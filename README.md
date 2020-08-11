@@ -1,5 +1,5 @@
 # Yellow Foods
-A database-backed REST API in C# ASP.NET Core:
+A db-backed REST API in C# ASP.NET Core:
 ```HTTP
 GET api/foods/1
 ```
