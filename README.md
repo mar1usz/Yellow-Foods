@@ -1,21 +1,21 @@
 # Yellow Foods
 A db-backed REST API in C# ASP.NET Core:
-```HTTP
+```
 GET api/foods/1
 ```
 
-```JSON
+```
 {
     "id": 1,
     "name": "banana"
 }
 ```
 
-```HTTP
+```
 GET api/foods/1/nutritions
 ```
 
-```JavaScript
+```
 [
     {
         "nutrition_id": 1,
@@ -42,7 +42,7 @@ GET api/foods/1/nutritions
 
 ## Build and run:
 ### SSMS:
-- Connect to (localdb)\mssqllocaldb
+- Connect to `(localdb)\mssqllocaldb`
 - Object Explorer > Databases > Restore Database... > Device > ... > Add > yellow_foods.bak > OK > OK > OK
 ### VS:
 - Yellow Foods.sln > F5
