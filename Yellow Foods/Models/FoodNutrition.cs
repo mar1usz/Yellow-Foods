@@ -23,14 +23,12 @@ namespace Yellow_Foods.Models
         [Required]
         public int UnitID { get; set; }
 
-        [Column("value")]
+        [Column("value", TypeName = "decimal(18, 1)")]
         [Required]
         public decimal Value { get; set; }
 
         public Food Food { get; set; }
-
         public Nutrition Nutrition { get; set; }
-
         public Unit Unit { get; set; }
 
     }

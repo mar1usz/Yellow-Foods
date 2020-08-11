@@ -1,10 +1,11 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Yellow_Foods.Models;
+using Yellow_Foods.Models.Data;
 
 namespace Yellow_Foods
 {
@@ -21,6 +22,8 @@ namespace Yellow_Foods
         {
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
         }
