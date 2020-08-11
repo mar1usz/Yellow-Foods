@@ -1,21 +1,21 @@
 # Yellow Foods
 A database-backed REST API in C# ASP.NET Core:
-```
+```HTTP
 GET https://localhost:5001/api/foods/1
 ```
 
-```
+```JSON
 {
     "id": 1,
     "name": "banana"
 }
 ```
 
-```
+```HTTP
 GET https://localhost:5001/api/foods/1/nutritions
 ```
 
-```
+```JSON
 [
     {
         "nutrition_id": 1,
@@ -31,7 +31,6 @@ GET https://localhost:5001/api/foods/1/nutritions
         "unit_id": 2,
         "unit_abbrev": "g"
     },
-    (...)
 ```
 
 ## Prerequisites:
