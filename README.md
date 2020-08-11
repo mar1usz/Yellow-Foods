@@ -43,8 +43,8 @@ GET https://localhost:5001/api/foods/1/nutritions
 ### SSMS:
 - Connect to `(localdb)\mssqllocaldb`
 - Object Explorer > Databases > Restore Database... > Device > ... > Add > yellow_foods.bak > OK > OK > OK
-### Visual Studio:
-- Open "Yellow Foods.sln" file > F5
+### VS:
+- Yellow Foods.sln > F5
 
 ## Credits:
 - AutoMapper by https://automapper.org (MIT License)
