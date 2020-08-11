@@ -146,9 +146,7 @@ namespace Yellow_Foods.Controllers
 
             await _context.SaveChangesAsync();
 
-            foodDTO = _mapper.Map<FoodDTO>(food);
-
-            return CreatedAtAction(nameof(GetFood), new { foodID = foodDTO.ID }, foodDTO);
+            return CreatedAtAction(nameof(GetFood), new { foodID = food.ID }, _mapper.Map<FoodDTO>(food));
         }
 
         // POST: api/foods/2/nutritions
@@ -161,9 +159,11 @@ namespace Yellow_Foods.Controllers
 
             await _context.SaveChangesAsync();
 
-            foodNutritionDTO = _mapper.Map<FoodNutritionDTO>(foodNutrition);
+            int _foodID = foodNutrition.FoodID;
+            int _nutritionID = foodNutrition.NutritionID;
+            var _foodNutrition = await GetFoodNutritionsForDTO(_foodID, _nutritionID).SingleOrDefaultAsync();
 
-            return CreatedAtAction(nameof(GetFoodNutrition), new { foodID = foodNutrition.FoodID, nutritionID = foodNutritionDTO.NutritionID }, foodNutritionDTO);
+            return CreatedAtAction(nameof(GetFoodNutrition), new { foodID = _foodID, nutritionID = _nutritionID }, _mapper.Map<FoodNutritionDTO>(_foodNutrition));
         }
 
         // DELETE: api/foods/2
