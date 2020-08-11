@@ -1,7 +1,7 @@
 # Yellow Foods
 A database-backed REST API in C# ASP.NET Core:
 ```HTTP
-GET https://localhost:5001/api/foods/1
+GET api/foods/1
 ```
 
 ```JSON
@@ -12,7 +12,7 @@ GET https://localhost:5001/api/foods/1
 ```
 
 ```HTTP
-GET https://localhost:5001/api/foods/1/nutritions
+GET api/foods/1/nutritions
 ```
 
 ```JavaScript
