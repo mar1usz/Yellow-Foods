@@ -42,7 +42,7 @@ GET api/foods/1/nutritions
 
 ## Build and run:
 ### SSMS:
-- Connect to `(localdb)\mssqllocaldb`
+- Connect to (localdb)\mssqllocaldb
 - Object Explorer > Databases > Restore Database... > Device > ... > Add > yellow_foods.bak > OK > OK > OK
 ### VS:
 - Yellow Foods.sln > F5
