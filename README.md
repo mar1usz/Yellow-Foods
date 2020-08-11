@@ -15,7 +15,7 @@ GET https://localhost:5001/api/foods/1
 GET https://localhost:5001/api/foods/1/nutritions
 ```
 
-```JSON
+```JavaScript
 [
     {
         "nutrition_id": 1,
@@ -31,6 +31,8 @@ GET https://localhost:5001/api/foods/1/nutritions
         "unit_id": 2,
         "unit_abbrev": "g"
     },
+    {...}
+]
 ```
 
 ## Prerequisites:
