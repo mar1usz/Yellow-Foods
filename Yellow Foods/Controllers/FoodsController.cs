@@ -32,7 +32,7 @@ namespace Yellow_Foods.Controllers
             return _mapper.Map<List<FoodDTO>>(foods);
         }
 
-        // GET: api/foods/2
+        // GET: api/foods/1
         [HttpGet("{foodID}")]
         public async Task<ActionResult<FoodDTO>> GetFood(int foodID)
         {
@@ -46,7 +46,7 @@ namespace Yellow_Foods.Controllers
             return _mapper.Map<FoodDTO>(food);
         }
 
-        // GET: api/foods/2/nutritions
+        // GET: api/foods/1/nutritions
         [HttpGet("{foodID}/nutritions")]
         public async Task<ActionResult<IEnumerable<FoodNutritionDTO>>> GetFoodNutritions(int foodID)
         {
@@ -55,7 +55,7 @@ namespace Yellow_Foods.Controllers
             return _mapper.Map<List<FoodNutritionDTO>>(foodNutrition);
         }
 
-        // GET: api/foods/2/nutritions/1
+        // GET: api/foods/1/nutritions/2
         [HttpGet("{foodID}/nutritions/{nutritionID}")]
         public async Task<ActionResult<FoodNutritionDTO>> GetFoodNutrition(int foodID, int nutritionID)
         {
@@ -69,7 +69,7 @@ namespace Yellow_Foods.Controllers
             return _mapper.Map<FoodNutritionDTO>(foodNutrition);
         }
 
-        // PUT: api/foods/2
+        // PUT: api/foods/1
         [HttpPut("{foodID}")]
         public async Task<IActionResult> PutFood(int foodID, FoodDTO foodDTO)
         {
@@ -100,7 +100,7 @@ namespace Yellow_Foods.Controllers
             return NoContent();
         }
 
-        // PUT: api/foods/2/nutritions/1
+        // PUT: api/foods/1/nutritions/2
         [HttpPut("{foodID}/nutritions/{nutritionID}")]
         public async Task<IActionResult> PutFoodNutrition(int foodID, int nutritionID, FoodNutritionDTO foodNutritionDTO)
         {
@@ -149,7 +149,7 @@ namespace Yellow_Foods.Controllers
             return CreatedAtAction(nameof(GetFood), new { foodID = food.ID }, _mapper.Map<FoodDTO>(food));
         }
 
-        // POST: api/foods/2/nutritions
+        // POST: api/foods/1/nutritions
         [HttpPost("{foodID}/nutritions")]
         public async Task<ActionResult<FoodNutritionDTO>> PostFoodNutrition(int foodID, FoodNutritionDTO foodNutritionDTO)
         {
@@ -166,7 +166,7 @@ namespace Yellow_Foods.Controllers
             return CreatedAtAction(nameof(GetFoodNutrition), new { foodID = _foodID, nutritionID = _nutritionID }, _mapper.Map<FoodNutritionDTO>(_foodNutrition));
         }
 
-        // DELETE: api/foods/2
+        // DELETE: api/foods/1
         [HttpDelete("{foodID}")]
         public async Task<ActionResult<FoodDTO>> DeleteFood(int foodID)
         {
@@ -183,7 +183,7 @@ namespace Yellow_Foods.Controllers
             return _mapper.Map<FoodDTO>(food);
         }
 
-        // DELETE: api/foods/2/nutritions/1
+        // DELETE: api/foods/1/nutritions/2
         [HttpDelete("{foodID}/nutritions/{nutritionID}")]
         public async Task<ActionResult<FoodNutritionDTO>> DeleteFoodNutrition(int foodID, int nutritionID)
         {
