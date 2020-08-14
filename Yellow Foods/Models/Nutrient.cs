@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Yellow_Foods.Models
 {
-    [Table("nutrition")]
-    public class Nutrition
+    [Table("nutrient")]
+    public class Nutrient
     {
         [Column("id")]
         [Required]
@@ -17,6 +17,6 @@ namespace Yellow_Foods.Models
         [Required]
         public string Name { get; set; }
 
-        public ICollection<FoodNutrition> FoodNutritions { get; set; }
+        public ICollection<FoodNutrient> FoodNutrients { get; set; }
     }
 }

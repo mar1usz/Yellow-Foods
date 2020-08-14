@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Yellow_Foods.Models
 {
-    [Table("food_nutrition")]
-    public class FoodNutrition
+    [Table("food_nutrient")]
+    public class FoodNutrient
     {
         [Column("id")]
         [Required]
@@ -15,9 +15,9 @@ namespace Yellow_Foods.Models
         [Required]
         public int FoodID { get; set; }
 
-        [Column("nutrition_id")]
+        [Column("nutrient_id")]
         [Required]
-        public int NutritionID { get; set; }
+        public int NutrientID { get; set; }
 
         [Column("unit_id")]
         [Required]
@@ -28,7 +28,7 @@ namespace Yellow_Foods.Models
         public decimal Value { get; set; }
 
         public Food Food { get; set; }
-        public Nutrition Nutrition { get; set; }
+        public Nutrient Nutrient { get; set; }
         public Unit Unit { get; set; }
 
     }

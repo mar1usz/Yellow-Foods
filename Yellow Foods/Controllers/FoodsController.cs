@@ -46,27 +46,27 @@ namespace Yellow_Foods.Controllers
             return _mapper.Map<FoodDTO>(food);
         }
 
-        // GET: api/foods/1/nutritions
-        [HttpGet("{foodID}/nutritions")]
-        public async Task<ActionResult<IEnumerable<FoodNutritionDTO>>> GetFoodNutritions(int foodID)
+        // GET: api/foods/1/nutrients
+        [HttpGet("{foodID}/nutrients")]
+        public async Task<ActionResult<IEnumerable<FoodNutrientDTO>>> GetFoodNutrients(int foodID)
         {
-            var foodNutrition = await GetFoodNutritionsForDTO(foodID, null).ToListAsync();
+            var foodNutrient = await GetFoodNutrientsForDTO(foodID, null).ToListAsync();
 
-            return _mapper.Map<List<FoodNutritionDTO>>(foodNutrition);
+            return _mapper.Map<List<FoodNutrientDTO>>(foodNutrient);
         }
 
-        // GET: api/foods/1/nutritions/2
-        [HttpGet("{foodID}/nutritions/{nutritionID}")]
-        public async Task<ActionResult<FoodNutritionDTO>> GetFoodNutrition(int foodID, int nutritionID)
+        // GET: api/foods/1/nutrients/2
+        [HttpGet("{foodID}/nutrients/{nutrientID}")]
+        public async Task<ActionResult<FoodNutrientDTO>> GetFoodNutrient(int foodID, int nutrientID)
         {
-            var foodNutrition = await GetFoodNutritionsForDTO(foodID, nutritionID).SingleOrDefaultAsync();
+            var foodNutrient = await GetFoodNutrientsForDTO(foodID, nutrientID).SingleOrDefaultAsync();
 
-            if (foodNutrition == null)
+            if (foodNutrient == null)
             {
                 return NotFound();
             }
 
-            return _mapper.Map<FoodNutritionDTO>(foodNutrition);
+            return _mapper.Map<FoodNutrientDTO>(foodNutrient);
         }
 
         // PUT: api/foods/1
@@ -100,23 +100,23 @@ namespace Yellow_Foods.Controllers
             return NoContent();
         }
 
-        // PUT: api/foods/1/nutritions/2
-        [HttpPut("{foodID}/nutritions/{nutritionID}")]
-        public async Task<IActionResult> PutFoodNutrition(int foodID, int nutritionID, FoodNutritionDTO foodNutritionDTO)
+        // PUT: api/foods/1/nutrients/2
+        [HttpPut("{foodID}/nutrients/{nutrientID}")]
+        public async Task<IActionResult> PutFoodNutrient(int foodID, int nutrientID, FoodNutrientDTO foodNutrientDTO)
         {
-            if (foodNutritionDTO.NutritionID != nutritionID)
+            if (foodNutrientDTO.NutrientID != nutrientID)
             {
                 return BadRequest();
             }
 
-            var foodNutritionOG = await GetFoodNutritionsForDTO(foodID, nutritionID)
+            var foodNutrientOG = await GetFoodNutrientsForDTO(foodID, nutrientID)
                 .AsNoTracking()
                 .SingleOrDefaultAsync();
 
-            var foodNutrition = _mapper.Map<FoodNutrition>(foodNutritionDTO);
-            foodNutrition.ID = foodNutritionOG.ID;
-            foodNutrition.FoodID = foodID;
-            _context.Entry(foodNutrition).State = EntityState.Modified;
+            var foodNutrient = _mapper.Map<FoodNutrient>(foodNutrientDTO);
+            foodNutrient.ID = foodNutrientOG.ID;
+            foodNutrient.FoodID = foodID;
+            _context.Entry(foodNutrient).State = EntityState.Modified;
 
             try
             {
@@ -124,7 +124,7 @@ namespace Yellow_Foods.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FoodNutritionExists(foodID, nutritionID))
+                if (!FoodNutrientExists(foodID, nutrientID))
                 {
                     return NotFound();
                 }
@@ -149,21 +149,21 @@ namespace Yellow_Foods.Controllers
             return CreatedAtAction(nameof(GetFood), new { foodID = food.ID }, _mapper.Map<FoodDTO>(food));
         }
 
-        // POST: api/foods/1/nutritions
-        [HttpPost("{foodID}/nutritions")]
-        public async Task<ActionResult<FoodNutritionDTO>> PostFoodNutrition(int foodID, FoodNutritionDTO foodNutritionDTO)
+        // POST: api/foods/1/nutrients
+        [HttpPost("{foodID}/nutrients")]
+        public async Task<ActionResult<FoodNutrientDTO>> PostFoodNutrient(int foodID, FoodNutrientDTO foodNutrientDTO)
         {
-            var foodNutrition = _mapper.Map<FoodNutrition>(foodNutritionDTO);
-            foodNutrition.FoodID = foodID;
-            _context.FoodNutritions.Add(foodNutrition);
+            var foodNutrient = _mapper.Map<FoodNutrient>(foodNutrientDTO);
+            foodNutrient.FoodID = foodID;
+            _context.FoodNutrients.Add(foodNutrient);
 
             await _context.SaveChangesAsync();
 
-            int _foodID = foodNutrition.FoodID;
-            int _nutritionID = foodNutrition.NutritionID;
-            var _foodNutrition = await GetFoodNutritionsForDTO(_foodID, _nutritionID).SingleOrDefaultAsync();
+            int _foodID = foodNutrient.FoodID;
+            int _nutrientID = foodNutrient.NutrientID;
+            var _foodNutrient = await GetFoodNutrientsForDTO(_foodID, _nutrientID).SingleOrDefaultAsync();
 
-            return CreatedAtAction(nameof(GetFoodNutrition), new { foodID = _foodID, nutritionID = _nutritionID }, _mapper.Map<FoodNutritionDTO>(_foodNutrition));
+            return CreatedAtAction(nameof(GetFoodNutrient), new { foodID = _foodID, nutrientID = _nutrientID }, _mapper.Map<FoodNutrientDTO>(_foodNutrient));
         }
 
         // DELETE: api/foods/1
@@ -183,21 +183,21 @@ namespace Yellow_Foods.Controllers
             return _mapper.Map<FoodDTO>(food);
         }
 
-        // DELETE: api/foods/1/nutritions/2
-        [HttpDelete("{foodID}/nutritions/{nutritionID}")]
-        public async Task<ActionResult<FoodNutritionDTO>> DeleteFoodNutrition(int foodID, int nutritionID)
+        // DELETE: api/foods/1/nutrients/2
+        [HttpDelete("{foodID}/nutrients/{nutrientID}")]
+        public async Task<ActionResult<FoodNutrientDTO>> DeleteFoodNutrient(int foodID, int nutrientID)
         {
-            var foodNutrition = await GetFoodNutritionsForDTO(foodID, nutritionID).SingleOrDefaultAsync();
+            var foodNutrient = await GetFoodNutrientsForDTO(foodID, nutrientID).SingleOrDefaultAsync();
 
-            if (foodNutrition == null)
+            if (foodNutrient == null)
             {
                 return NotFound();
             }
 
-            _context.FoodNutritions.Remove(foodNutrition);
+            _context.FoodNutrients.Remove(foodNutrient);
             await _context.SaveChangesAsync();
 
-            return _mapper.Map<FoodNutritionDTO>(foodNutrition);
+            return _mapper.Map<FoodNutrientDTO>(foodNutrient);
         }
 
         private bool FoodExists(int foodID)
@@ -205,29 +205,29 @@ namespace Yellow_Foods.Controllers
             return _context.Foods.Any(f => f.ID == foodID);
         }
 
-        private bool FoodNutritionExists(int foodID, int nutritionID)
+        private bool FoodNutrientExists(int foodID, int nutrientID)
         {
-            return _context.FoodNutritions
+            return _context.FoodNutrients
                 .Where(fn => fn.FoodID == foodID)
-                .Where(fn => fn.NutritionID == nutritionID)
+                .Where(fn => fn.NutrientID == nutrientID)
                 .Any();
         }
 
-        private IQueryable<FoodNutrition> GetFoodNutritionsForDTO(int? foodID = null, int? nutritionID = null)
+        private IQueryable<FoodNutrient> GetFoodNutrientsForDTO(int? foodID = null, int? nutrientID = null)
         {
-            IQueryable<FoodNutrition> foodNutritions = _context.FoodNutritions
-                .Include(fn => fn.Nutrition)
+            IQueryable<FoodNutrient> foodNutrients = _context.FoodNutrients
+                .Include(fn => fn.Nutrient)
                 .Include(fn => fn.Unit)
                 .OrderBy(fn => fn.FoodID)
-                .OrderBy(fn => fn.NutritionID);
+                .OrderBy(fn => fn.NutrientID);
 
             if (foodID.HasValue)
-                foodNutritions = foodNutritions.Where(fn => fn.FoodID == foodID);
+                foodNutrients = foodNutrients.Where(fn => fn.FoodID == foodID);
 
-            if(nutritionID.HasValue)
-                foodNutritions = foodNutritions.Where(fn =>  fn.NutritionID == nutritionID);
+            if(nutrientID.HasValue)
+                foodNutrients = foodNutrients.Where(fn =>  fn.NutrientID == nutrientID);
 
-            return foodNutritions;
+            return foodNutrients;
         }
     }
 }

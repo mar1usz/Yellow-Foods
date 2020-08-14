@@ -12,21 +12,21 @@ GET api/foods/1
 ```
 
 ```HTTP
-GET api/foods/1/nutritions
+GET api/foods/1/nutrients
 ```
 
 ```JavaScript
 [
     {
-        "nutrition_id": 1,
-        "nutrition_name": "calories",
+        "nutrient_id": 1,
+        "nutrient_name": "calories",
         "value": 89.0,
         "unit_id": 1,
         "unit_abbrev": "kcal"
     },
     {
-        "nutrition_id": 2,
-        "nutrition_name": "total fat",
+        "nutrient_id": 2,
+        "nutrient_name": "total fat",
         "value": 0.3,
         "unit_id": 2,
         "unit_abbrev": "g"

@@ -3,14 +3,14 @@ using System.Text.Json.Serialization;
 
 namespace Yellow_Foods.DTOs
 {
-    public class FoodNutritionDTO
+    public class FoodNutrientDTO
     {
-        [JsonPropertyName("nutrition_id")]
-        public int NutritionID { get; set; }
+        [JsonPropertyName("nutrient_id")]
+        public int NutrientID { get; set; }
 
-        [JsonPropertyName("nutrition_name")]
+        [JsonPropertyName("nutrient_name")]
         [MaxLength(50)]
-        public string NutritionName { get; set; }
+        public string NutrientName { get; set; }
 
         [JsonPropertyName("value")]
         public decimal Value { get; set; }

@@ -3,17 +3,17 @@ using Yellow_Foods.Models;
 
 namespace Yellow_Foods.DTOs.Profiles
 {
-    public class FoodNutritionProfile : Profile
+    public class FoodNutrientProfile : Profile
     {
-        public FoodNutritionProfile()
+        public FoodNutrientProfile()
         {
-            CreateMap<FoodNutrition, FoodNutritionDTO>()
+            CreateMap<FoodNutrient, FoodNutrientDTO>()
                 .ForMember(dto =>
-                dto.NutritionID,
-                options => options.MapFrom(model => model.NutritionID))
+                dto.NutrientID,
+                options => options.MapFrom(model => model.NutrientID))
                 .ForMember(dto =>
-                dto.NutritionName,
-                options => options.MapFrom(model => model.Nutrition.Name))
+                dto.NutrientName,
+                options => options.MapFrom(model => model.Nutrient.Name))
                 .ForMember(dto =>
                 dto.Value,
                 options => options.MapFrom(model => model.Value))
