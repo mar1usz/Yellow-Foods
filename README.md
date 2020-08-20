@@ -48,4 +48,4 @@ GET api/foods/1/nutrients
 - Yellow Foods.sln > F5
 
 ## Credits:
-- AutoMapper by https://automapper.org (MIT License)
+- AutoMapper by https://automapper.org (MIT license)
