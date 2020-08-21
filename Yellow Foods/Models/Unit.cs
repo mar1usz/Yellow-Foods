@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Yellow_Foods.Models
 {
-    [Table("unit")]
+    [Table("units")]
     public class Unit
     {
         [Column("id")]
