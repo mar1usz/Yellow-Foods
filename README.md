@@ -48,4 +48,5 @@ GET api/foods/1/nutrients
 - Yellow Foods.sln > F5
 
 ## Credits:
+- dotnet-aspnet-codegenerator by https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design (Apache-2.0 license)
 - AutoMapper by https://automapper.org (MIT license)
