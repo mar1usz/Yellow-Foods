@@ -20,14 +20,14 @@ GET api/foods/1/nutrients
     {
         "nutrient_id": 1,
         "nutrient_name": "calories",
-        "value": 89.0,
+        "amount": 89.0,
         "unit_id": 1,
         "unit_abbrev": "kcal"
     },
     {
         "nutrient_id": 2,
         "nutrient_name": "total fat",
-        "value": 0.3,
+        "amount": 0.3,
         "unit_id": 2,
         "unit_abbrev": "g"
     },
