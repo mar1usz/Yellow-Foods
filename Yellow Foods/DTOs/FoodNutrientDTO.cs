@@ -12,8 +12,8 @@ namespace Yellow_Foods.DTOs
         [MaxLength(50)]
         public string NutrientName { get; set; }
 
-        [JsonPropertyName("value")]
-        public decimal Value { get; set; }
+        [JsonPropertyName("amount")]
+        public decimal Amount { get; set; }
 
         [JsonPropertyName("unit_id")]
         public int UnitID { get; set; }

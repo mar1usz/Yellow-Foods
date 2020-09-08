@@ -15,8 +15,8 @@ namespace Yellow_Foods.DTOs.Profiles
                 dto.NutrientName,
                 options => options.MapFrom(model => model.Nutrient.Name))
                 .ForMember(dto =>
-                dto.Value,
-                options => options.MapFrom(model => model.Value))
+                dto.Amount,
+                options => options.MapFrom(model => model.Amount))
                 .ForMember(dto =>
                 dto.UnitID,
                 options => options.MapFrom(model => model.UnitID))
