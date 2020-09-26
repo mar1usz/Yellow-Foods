@@ -217,9 +217,7 @@ namespace Yellow_Foods.Controllers
         {
             IQueryable<FoodNutrient> foodNutrients = _context.FoodNutrients
                 .Include(fn => fn.Nutrient)
-                .Include(fn => fn.Unit)
-                .OrderBy(fn => fn.FoodID)
-                .OrderBy(fn => fn.NutrientID);
+                .Include(fn => fn.Unit);
 
             if (foodID.HasValue)
                 foodNutrients = foodNutrients.Where(fn => fn.FoodID == foodID);
