@@ -96,7 +96,6 @@ namespace Yellow_Foods.Controllers
                     throw;
                 }
             }
-
             return NoContent();
         }
 
@@ -133,7 +132,6 @@ namespace Yellow_Foods.Controllers
                     throw;
                 }
             }
-
             return NoContent();
         }
 
