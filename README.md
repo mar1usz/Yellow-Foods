@@ -4,7 +4,7 @@ A database-backed REST API in C# ASP.NET Core:
 GET api/foods/1
 ```
 
-```JavaScript
+```JSON
 {
     "id": 1,
     "name": "banana"
