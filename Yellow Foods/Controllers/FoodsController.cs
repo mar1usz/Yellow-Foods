@@ -108,12 +108,19 @@ namespace Yellow_Foods.Controllers
                 return BadRequest();
             }
 
-            var foodNutrientOG = await GetFoodNutrientsForDTO(foodID, nutrientID)
-                .AsNoTracking()
+            int ID = await _context.FoodNutrients
+                .Where(fn => fn.FoodID == foodID)
+                .Where(fn => fn.NutrientID == nutrientID)
+                .Select(fn => fn.ID)
                 .SingleOrDefaultAsync();
 
+            if (ID == 0)
+            {
+                return NotFound();
+            }
+
             var foodNutrient = _mapper.Map<FoodNutrient>(foodNutrientDTO);
-            foodNutrient.ID = foodNutrientOG.ID;
+            foodNutrient.ID = ID;
             foodNutrient.FoodID = foodID;
             _context.Entry(foodNutrient).State = EntityState.Modified;
 
@@ -157,11 +164,9 @@ namespace Yellow_Foods.Controllers
 
             await _context.SaveChangesAsync();
 
-            int _foodID = foodNutrient.FoodID;
-            int _nutrientID = foodNutrient.NutrientID;
-            var _foodNutrient = await GetFoodNutrientsForDTO(_foodID, _nutrientID).SingleOrDefaultAsync();
+            foodNutrient = await GetFoodNutrientsForDTO(foodNutrient.FoodID, foodNutrient.NutrientID).SingleOrDefaultAsync();
 
-            return CreatedAtAction(nameof(GetFoodNutrient), new { foodID = _foodID, nutrientID = _nutrientID }, _mapper.Map<FoodNutrientDTO>(_foodNutrient));
+            return CreatedAtAction(nameof(GetFoodNutrient), new { foodID = foodNutrient.FoodID, nutrientID = foodNutrient.NutrientID }, _mapper.Map<FoodNutrientDTO>(foodNutrient));
         }
 
         // DELETE: api/foods/1
@@ -218,10 +223,14 @@ namespace Yellow_Foods.Controllers
                 .Include(fn => fn.Unit);
 
             if (foodID.HasValue)
+            {
                 foodNutrients = foodNutrients.Where(fn => fn.FoodID == foodID);
+            }
 
-            if(nutrientID.HasValue)
-                foodNutrients = foodNutrients.Where(fn =>  fn.NutrientID == nutrientID);
+            if (nutrientID.HasValue)
+            {
+                foodNutrients = foodNutrients.Where(fn => fn.NutrientID == nutrientID);
+            }
 
             return foodNutrients;
         }
