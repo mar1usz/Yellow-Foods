@@ -36,7 +36,7 @@ GET api/foods/1/nutrients
 ```
 
 ## Prerequisites:
-- ASP.NET Core 3.1
+- .NET Core 3.1
 - Visual Studio 2019
 - SQL Server Management Studio 18
 
