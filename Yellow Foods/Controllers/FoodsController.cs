@@ -87,7 +87,7 @@ namespace Yellow_Foods.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FoodExists(foodID))
+                if (!await FoodExistsAsync(foodID))
                 {
                     return NotFound();
                 }
@@ -130,7 +130,7 @@ namespace Yellow_Foods.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FoodNutrientExists(foodID, nutrientID))
+                if (!await FoodNutrientExistsAsync(foodID, nutrientID))
                 {
                     return NotFound();
                 }
@@ -147,8 +147,8 @@ namespace Yellow_Foods.Controllers
         public async Task<ActionResult<FoodDTO>> PostFood(FoodDTO foodDTO)
         {
             var food = _mapper.Map<Food>(foodDTO);
-            _context.Foods.Add(food);
 
+            _context.Foods.Add(food);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetFood), new { foodID = food.ID }, _mapper.Map<FoodDTO>(food));
@@ -160,8 +160,8 @@ namespace Yellow_Foods.Controllers
         {
             var foodNutrient = _mapper.Map<FoodNutrient>(foodNutrientDTO);
             foodNutrient.FoodID = foodID;
-            _context.FoodNutrients.Add(foodNutrient);
 
+            _context.FoodNutrients.Add(foodNutrient);
             await _context.SaveChangesAsync();
 
             foodNutrient = await GetFoodNutrientsForDTO(foodNutrient.FoodID, foodNutrient.NutrientID).SingleOrDefaultAsync();
@@ -203,17 +203,17 @@ namespace Yellow_Foods.Controllers
             return _mapper.Map<FoodNutrientDTO>(foodNutrient);
         }
 
-        private bool FoodExists(int foodID)
+        private async Task<bool> FoodExistsAsync(int foodID)
         {
-            return _context.Foods.Any(f => f.ID == foodID);
+            return await _context.Foods.AnyAsync(f => f.ID == foodID);
         }
 
-        private bool FoodNutrientExists(int foodID, int nutrientID)
+        private async Task<bool> FoodNutrientExistsAsync(int foodID, int nutrientID)
         {
-            return _context.FoodNutrients
+            return await _context.FoodNutrients
                 .Where(fn => fn.FoodID == foodID)
                 .Where(fn => fn.NutrientID == nutrientID)
-                .Any();
+                .AnyAsync();
         }
 
         private IQueryable<FoodNutrient> GetFoodNutrientsForDTO(int? foodID = null, int? nutrientID = null)
