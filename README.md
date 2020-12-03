@@ -37,7 +37,7 @@ GET api/foods/1/nutrients
 
 ## Prerequisites:
 - .NET Core 3.1
-- Visual Studio 2019
+- Visual Studio 2019 (with ".NET desktop development" workload installed)
 - SQL Server Management Studio 18
 
 ## Build and run:
