@@ -211,9 +211,8 @@ namespace Yellow_Foods.Controllers
         private bool FoodNutrientExists(int foodID, int nutrientID)
         {
             return _context.FoodNutrients
-                .Where(fn => fn.FoodID == foodID
-                && fn.NutrientID == nutrientID)
-                .Any();
+                .Any(fn => fn.FoodID == foodID
+                && fn.NutrientID == nutrientID);
         }
 
         private IQueryable<FoodNutrient> GetFoodNutrientsForDTO(int? foodID = null, int? nutrientID = null)
