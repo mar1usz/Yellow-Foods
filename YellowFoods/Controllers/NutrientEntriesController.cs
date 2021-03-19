@@ -36,7 +36,7 @@ namespace YellowFoods.Controllers
                 .FindAsync(nutrientEntryId);
 
             if (nutrientEntry == null
-                || nutrientEntry.Id != foodId)
+                || nutrientEntry.FoodId != foodId)
             {
                 return NotFound();
             }
