@@ -7,8 +7,7 @@ GET api/foods/1
 ```JavaScript
 {
   "id": 1,
-  "name": "Banana",
-  "nutrientEntries": null
+  "name": "Banana"
 }
 ```
 
@@ -23,20 +22,14 @@ GET api/foods/1/nutriententries
     "nutrientId": 7,
     "foodId": 1,
     "unitId": 2,
-    "amount": 1.10,
-    "nutrient": null,
-    "food": null,
-    "unit": null
+    "amount": 1.10
   },
   {
     "id": 21,
     "nutrientId": 1,
     "foodId": 1,
     "unitId": 1,
-    "amount": 89.00,
-    "nutrient": null,
-    "food": null,
-    "unit": null
+    "amount": 89.00
   },
   {...}
 ]
