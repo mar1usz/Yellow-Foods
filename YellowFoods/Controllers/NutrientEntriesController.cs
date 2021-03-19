@@ -33,10 +33,10 @@ namespace YellowFoods.Controllers
             int nutrientEntryId)
         {
             var nutrientEntry = await _context.NutrientEntries
-                .FindAsync(nutrientEntryId);
+                .Where(ne => ne.FoodId == foodId)
+                .FirstOrDefaultAsync(ne => ne.Id == nutrientEntryId);
 
-            if (nutrientEntry == null
-                || nutrientEntry.FoodId != foodId)
+            if (nutrientEntry == null)
             {
                 return NotFound();
             }
@@ -102,10 +102,10 @@ namespace YellowFoods.Controllers
             int nutrientEntryId)
         {
             var nutrientEntry = await _context.NutrientEntries
-                .FindAsync(nutrientEntryId);
+                .Where(ne => ne.FoodId == foodId)
+                .FirstOrDefaultAsync(ne => ne.Id == nutrientEntryId);
 
-            if (nutrientEntry == null
-                || nutrientEntry.FoodId != foodId)
+            if (nutrientEntry == null)
             {
                 return NotFound();
             }
