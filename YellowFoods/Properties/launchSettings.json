@@ -4,12 +4,20 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:61057",
-      "sslPort": 44379
+      "applicationUrl": "http://localhost:26874",
+      "sslPort": 44339
     }
   },
   "profiles": {
-    "Yellow_Foods": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "api/foods",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "YellowFoods": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/foods",

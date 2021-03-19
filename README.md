@@ -6,32 +6,39 @@ GET api/foods/1
 
 ```JavaScript
 {
-    "id": 1,
-    "name": "banana"
+  "id": 1,
+  "name": "Banana",
+  "nutrientEntries": null
 }
 ```
 
 ```HTTP
-GET api/foods/1/nutrients
+GET api/foods/1/nutriententries
 ```
 
 ```JavaScript
 [
-    {
-        "nutrient_id": 1,
-        "nutrient_name": "calories",
-        "amount": 89.0,
-        "unit_id": 1,
-        "unit_abbrev": "kcal"
-    },
-    {
-        "nutrient_id": 2,
-        "nutrient_name": "total fat",
-        "amount": 0.3,
-        "unit_id": 2,
-        "unit_abbrev": "g"
-    },
-    {...}
+  {
+    "id": 1,
+    "nutrientId": 7,
+    "foodId": 1,
+    "unitId": 2,
+    "amount": 1.10,
+    "nutrient": null,
+    "food": null,
+    "unit": null
+  },
+  {
+    "id": 21,
+    "nutrientId": 1,
+    "foodId": 1,
+    "unitId": 1,
+    "amount": 89.00,
+    "nutrient": null,
+    "food": null,
+    "unit": null
+  },
+  {...}
 ]
 ```
 
@@ -43,7 +50,7 @@ GET api/foods/1/nutrients
 ## Build and run:
 ### SSMS:
 - Connect to `(localdb)\mssqllocaldb`
-- Object Explorer > Databases > Restore Database... > Device > ... > Add > yellow_foods.bak > OK > OK > OK
+- Object Explorer > Databases > Restore Database... > Device > ... > Add > YellowFoodsContext.bak > OK > OK > OK
 ### VS:
 - Yellow Foods.sln > F5
 
