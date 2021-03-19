@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using YellowFoods.Data;
-using YellowFoods.Models;
+using YellowFoods.Dtos;
 
 namespace YellowFoods.Controllers
 {
@@ -12,27 +15,36 @@ namespace YellowFoods.Controllers
     public class NutrientsController : ControllerBase
     {
         private readonly YellowFoodsContext _context;
+        private readonly IConfigurationProvider _configuration;
 
-        public NutrientsController(YellowFoodsContext context) =>
-            _context = context;
+        public NutrientsController(YellowFoodsContext context,
+            IConfigurationProvider configuration) =>
+                (_context, _configuration) = (context, configuration);
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Nutrient>>> GetNutrients()
+        public async Task<ActionResult<IEnumerable<NutrientDto>>>
+            GetNutrients()
         {
-            return await _context.Nutrients.ToListAsync();
+            return await _context.Nutrients
+                .ProjectTo<NutrientDto>(_configuration)
+                .ToListAsync();
         }
 
         [HttpGet("{nutrientId}")]
-        public async Task<ActionResult<Nutrient>> GetNutrient(int nutrientId)
+        public async Task<ActionResult<NutrientDto>> GetNutrient(
+            int nutrientId)
         {
-            var nutrient = await _context.Nutrients.FindAsync(nutrientId);
+            var nutrientDto = await _context.Nutrients
+                .Where(n => n.Id == nutrientId)
+                .ProjectTo<NutrientDto>(_configuration)
+                .FirstOrDefaultAsync();
 
-            if (nutrient == null)
+            if (nutrientDto == null)
             {
                 return NotFound();
             }
 
-            return nutrient;
+            return nutrientDto;
         }
     }
 }
