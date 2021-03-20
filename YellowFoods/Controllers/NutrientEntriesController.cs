@@ -24,8 +24,8 @@ namespace YellowFoods.Controllers
             YellowFoodsContext context,
             IMapper mapper,
             IConfigurationProvider configuration) =>
-                (_context, _mapper, _configuration) =
-                    (context, mapper, configuration);
+            (_context, _mapper, _configuration) =
+                (context, mapper, configuration);
 
         [HttpGet("{foodId}/[controller]")]
         public async Task<ActionResult<IEnumerable<NutrientEntryDto>>>
