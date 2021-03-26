@@ -49,5 +49,5 @@ GET api/foods/1/nutriententries
 
 ## Credits:
 - Microsoft.VisualStudio.Web.CodeGeneration.Design by https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design (Apache-2.0 license)
-- Microsoft.EntityFrameworkCore.Tools by https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools
+- Microsoft.EntityFrameworkCore.Tools by https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools (Apache-2.0 license)
 - AutoMapper.Extensions.Microsoft.DependencyInjection by https://www.nuget.org/packages/AutoMapper.Extensions.Microsoft.DependencyInjection (MIT license)
