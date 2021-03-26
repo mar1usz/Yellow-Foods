@@ -22,9 +22,12 @@ namespace YellowFoods.Controllers
         public FoodsController(
             YellowFoodsContext context,
             IMapper mapper,
-            IConfigurationProvider configuration) =>
-            (_context, _mapper, _configuration) =
-                (context, mapper, configuration);
+            IConfigurationProvider configuration)
+        {
+            _context = context;
+            _mapper = mapper;
+            _configuration = configuration;
+        }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FoodDto>>> GetFoods()
@@ -58,7 +61,7 @@ namespace YellowFoods.Controllers
                 return BadRequest();
             }
 
-            var food =_mapper.Map<Food>(foodDto);
+            var food = _mapper.Map<Food>(foodDto);
             _context.Entry(food).State = EntityState.Modified;
 
             try

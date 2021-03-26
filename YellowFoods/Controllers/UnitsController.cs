@@ -18,8 +18,11 @@ namespace YellowFoods.Controllers
         private readonly IConfigurationProvider _configuration;
 
         public UnitsController(YellowFoodsContext context,
-            IConfigurationProvider configuration) =>
-            (_context, _configuration) = (context, configuration);
+            IConfigurationProvider configuration)
+        {
+            _context = context;
+            _configuration = configuration;
+        }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UnitDto>>> GetUnits()
