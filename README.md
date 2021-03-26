@@ -48,6 +48,6 @@ GET api/foods/1/nutriententries
 - YellowFoods.sln > F5
 
 ## Credits:
-- Microsoft.EntityFrameworkCore.Tools by https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools
 - Microsoft.VisualStudio.Web.CodeGeneration.Design by https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design (Apache-2.0 license)
+- Microsoft.EntityFrameworkCore.Tools by https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools
 - AutoMapper.Extensions.Microsoft.DependencyInjection by https://www.nuget.org/packages/AutoMapper.Extensions.Microsoft.DependencyInjection (MIT license)
