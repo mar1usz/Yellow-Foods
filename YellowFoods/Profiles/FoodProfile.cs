@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using YellowFoods.Data.Models;
 using YellowFoods.Dtos;
-using YellowFoods.Models;
 
 namespace YellowFoods.Profiles
 {

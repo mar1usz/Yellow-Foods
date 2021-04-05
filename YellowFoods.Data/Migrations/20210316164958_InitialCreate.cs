@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace YellowFoods.Migrations
+namespace YellowFoods.Data.Migrations
 {
     public partial class InitialCreate : Migration
     {

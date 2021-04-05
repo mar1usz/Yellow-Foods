@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YellowFoods.Data;
 
-namespace YellowFoods.Migrations
+namespace YellowFoods.Data.Migrations
 {
     [DbContext(typeof(YellowFoodsContext))]
     partial class YellowFoodsContextModelSnapshot : ModelSnapshot

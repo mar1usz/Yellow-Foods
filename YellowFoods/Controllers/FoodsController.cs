@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YellowFoods.Data;
+using YellowFoods.Data.Models;
 using YellowFoods.Dtos;
-using YellowFoods.Models;
 
 namespace YellowFoods.Controllers
 {
