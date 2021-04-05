@@ -18,7 +18,7 @@ namespace YellowFoods.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("YellowFoods.Models.Food", b =>
+            modelBuilder.Entity("YellowFoods.Data.Models.Food", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,7 +33,7 @@ namespace YellowFoods.Data.Migrations
                     b.ToTable("Foods");
                 });
 
-            modelBuilder.Entity("YellowFoods.Models.Nutrient", b =>
+            modelBuilder.Entity("YellowFoods.Data.Models.Nutrient", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace YellowFoods.Data.Migrations
                     b.ToTable("Nutrients");
                 });
 
-            modelBuilder.Entity("YellowFoods.Models.NutrientEntry", b =>
+            modelBuilder.Entity("YellowFoods.Data.Models.NutrientEntry", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -79,7 +79,7 @@ namespace YellowFoods.Data.Migrations
                     b.ToTable("NutrientEntries");
                 });
 
-            modelBuilder.Entity("YellowFoods.Models.Unit", b =>
+            modelBuilder.Entity("YellowFoods.Data.Models.Unit", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,21 +94,21 @@ namespace YellowFoods.Data.Migrations
                     b.ToTable("Units");
                 });
 
-            modelBuilder.Entity("YellowFoods.Models.NutrientEntry", b =>
+            modelBuilder.Entity("YellowFoods.Data.Models.NutrientEntry", b =>
                 {
-                    b.HasOne("YellowFoods.Models.Food", "Food")
+                    b.HasOne("YellowFoods.Data.Models.Food", "Food")
                         .WithMany("NutrientEntries")
                         .HasForeignKey("FoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("YellowFoods.Models.Nutrient", "Nutrient")
+                    b.HasOne("YellowFoods.Data.Models.Nutrient", "Nutrient")
                         .WithMany("NutrientEntries")
                         .HasForeignKey("NutrientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("YellowFoods.Models.Unit", "Unit")
+                    b.HasOne("YellowFoods.Data.Models.Unit", "Unit")
                         .WithMany("NutrientEntries")
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
