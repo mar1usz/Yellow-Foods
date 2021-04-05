@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using YellowFoods.Models;
+using YellowFoods.Data.Models;
 
 namespace YellowFoods.Data
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace YellowFoods.Models
+namespace YellowFoods.Data.Models
 {
     public class NutrientEntry
     {
