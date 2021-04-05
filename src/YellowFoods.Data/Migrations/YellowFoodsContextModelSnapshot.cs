@@ -2,17 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using YellowFoods.Data;
+using YellowFoods.Data.Data;
 
 namespace YellowFoods.Data.Migrations
 {
     [DbContext(typeof(YellowFoodsContext))]
-    [Migration("20210316164958_InitialCreate")]
-    partial class InitialCreate
+    partial class YellowFoodsContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

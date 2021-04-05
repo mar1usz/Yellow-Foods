@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using YellowFoods.Data;
+using YellowFoods.Data.Data;
 using YellowFoods.Data.Models;
 using YellowFoods.Dtos;
 
