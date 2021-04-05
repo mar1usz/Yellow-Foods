@@ -45,7 +45,7 @@ GET api/foods/1/nutriententries
 - Connect to `(localdb)\mssqllocaldb`
 - Object Explorer > Databases > Restore Database... > Device > ... > Add > YellowFoodsContext.bak > OK > OK > OK
 ### VS:
-- YellowFoods.sln > F5
+- src/YellowFoods.sln > F5
 
 ## Credits:
 - Microsoft.VisualStudio.Web.CodeGeneration.Design by https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design (Apache-2.0 license)
