@@ -20,7 +20,8 @@ namespace YellowFoods
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<YellowFoodsContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("YellowFoodsContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("YellowFoodsContext"),
+                    x => x.MigrationsAssembly("YellowFoods.Data")));
 
             services.AddAutoMapper(typeof(Startup));
 
