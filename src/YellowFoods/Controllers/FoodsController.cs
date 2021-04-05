@@ -15,22 +15,18 @@ namespace YellowFoods.Controllers
     {
         private readonly IFoodsDataService _dataService;
         private readonly IMapper _mapper;
-        private readonly IConfigurationProvider _configuration;
 
-        public FoodsController(
-            IFoodsDataService dataService,
-            IMapper mapper,
-            IConfigurationProvider configuration)
+        public FoodsController(IFoodsDataService dataService, IMapper mapper)
         {
             _dataService = dataService;
             _mapper = mapper;
-            _configuration = configuration;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FoodDto>>> GetFoods()
         {
             var foods = await _dataService.GetFoodsAsync();
+
             return  _mapper.Map<IEnumerable<FoodDto>>(foods).ToList();
         }
 
@@ -82,6 +78,7 @@ namespace YellowFoods.Controllers
             }
 
             await _dataService.RemoveFood(food);
+
             return _mapper.Map<FoodDto>(food);
         }
     }

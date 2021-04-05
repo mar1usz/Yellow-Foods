@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using YellowFoods.Data;
+using YellowFoods.Data.Services.Abstractions;
 using YellowFoods.Dtos;
 
 namespace YellowFoods.Controllers
@@ -14,40 +12,36 @@ namespace YellowFoods.Controllers
     [ApiController]
     public class NutrientsController : ControllerBase
     {
-        private readonly YellowFoodsContext _context;
-        private readonly IConfigurationProvider _configuration;
+        private readonly INutrientsDataService _dataService;
+        private readonly IMapper _mapper;
 
-        public NutrientsController(YellowFoodsContext context,
-            IConfigurationProvider configuration)
+        public NutrientsController(INutrientsDataService dataService,
+            IMapper mapper)
         {
-            _context = context;
-            _configuration = configuration;
+            _dataService = dataService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<NutrientDto>>>
             GetNutrients()
         {
-            return await _context.Nutrients
-                .ProjectTo<NutrientDto>(_configuration)
-                .ToListAsync();
+            var nutrients = await _dataService.GetNutrientsAsync();
+
+            return _mapper.Map<IEnumerable<NutrientDto>>(nutrients).ToList();
         }
 
         [HttpGet("{nutrientId}")]
         public async Task<ActionResult<NutrientDto>> GetNutrient(
             int nutrientId)
         {
-            var nutrientDto = await _context.Nutrients
-                .Where(n => n.Id == nutrientId)
-                .ProjectTo<NutrientDto>(_configuration)
-                .FirstOrDefaultAsync();
-
-            if (nutrientDto == null)
+            var nutrient = await _dataService.GetNutrientAsync(nutrientId);
+            if (nutrient == null)
             {
                 return NotFound();
             }
 
-            return nutrientDto;
+            return _mapper.Map<NutrientDto>(nutrient);
         }
     }
 }

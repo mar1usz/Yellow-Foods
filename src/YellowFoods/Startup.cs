@@ -25,6 +25,9 @@ namespace YellowFoods
                     options.UseSqlServer(Configuration.GetConnectionString("YellowFoodsContext")));
 
             services.AddScoped<IFoodsDataService, FoodsDataService>();
+            services.AddScoped<INutrientEntriesDataService, NutrientEntriesDataService>();
+            services.AddScoped<INutrientsDataService, NutrientsDataService>();
+            services.AddScoped<IUnitsDataService, UnitsDataService>();
 
             services.AddAutoMapper(typeof(Startup));
 

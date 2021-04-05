@@ -1,13 +1,11 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using YellowFoods.Data;
 using YellowFoods.Data.Models;
+using YellowFoods.Data.Services.Abstractions;
 using YellowFoods.Dtos;
 
 namespace YellowFoods.Controllers
@@ -16,28 +14,26 @@ namespace YellowFoods.Controllers
     [ApiController]
     public class NutrientEntriesController : ControllerBase
     {
-        private readonly YellowFoodsContext _context;
+        private readonly INutrientEntriesDataService _dataService;
         private readonly IMapper _mapper;
-        private readonly IConfigurationProvider _configuration;
 
         public NutrientEntriesController(
-            YellowFoodsContext context,
-            IMapper mapper,
-            IConfigurationProvider configuration)
+            INutrientEntriesDataService dataService,
+            IMapper mapper)
         {
-            _context = context;
+            _dataService = dataService;
             _mapper = mapper;
-            _configuration = configuration;
         }
 
         [HttpGet("{foodId}/[controller]")]
         public async Task<ActionResult<IEnumerable<NutrientEntryDto>>>
             GetNutrientEntries(int foodId)
         {
-            return await _context.NutrientEntries
-                .Where(ne => ne.FoodId == foodId)
-                .ProjectTo<NutrientEntryDto>(_configuration)
-                .ToListAsync();
+            var nutrientEntries = await _dataService.GetNutrientEntriesAsync(
+                foodId);
+
+            return _mapper.Map<IEnumerable<NutrientEntryDto>>(nutrientEntries)
+                .ToList();
         }
 
         [HttpGet("{foodId}/[controller]/{nutrientEntryId}")]
@@ -45,18 +41,14 @@ namespace YellowFoods.Controllers
             int foodId,
             int nutrientEntryId)
         {
-            var nutrientEntryDto = await _context.NutrientEntries
-                .Where(ne => ne.FoodId == foodId
-                             && ne.Id == nutrientEntryId)
-                .ProjectTo<NutrientEntryDto>(_configuration)
-                .FirstOrDefaultAsync();
-
-            if (nutrientEntryDto == null)
+            var nutrientEntry = await _dataService.GetNutrientEntryAsync(
+                foodId, nutrientEntryId);
+            if (nutrientEntry == null)
             {
                 return NotFound();
             }
 
-            return nutrientEntryDto;
+            return _mapper.Map<NutrientEntryDto>(nutrientEntry);
         }
 
         [HttpPut("{foodId}/[controller]/{nutrientEntryId}")]
@@ -72,23 +64,7 @@ namespace YellowFoods.Controllers
             }
 
             var nutrientEntry = _mapper.Map<NutrientEntry>(nutrientEntryDto);
-            _context.Entry(nutrientEntry).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!NutrientEntryExists(nutrientEntryId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _dataService.UpdateNutrientEntry(nutrientEntry);
 
             return NoContent();
         }
@@ -104,8 +80,7 @@ namespace YellowFoods.Controllers
             }
 
             var nutrientEntry = _mapper.Map<NutrientEntry>(nutrientEntryDto);
-            _context.NutrientEntries.Add(nutrientEntry);
-            await _context.SaveChangesAsync();
+            await _dataService.AddNutrientEntry(nutrientEntry);
 
             return CreatedAtAction(
                 nameof(GetNutrientEntry),
@@ -118,22 +93,16 @@ namespace YellowFoods.Controllers
             int foodId,
             int nutrientEntryId)
         {
-            var nutrientEntry = await _context.NutrientEntries
-                .Where(ne => ne.FoodId == foodId
-                             && ne.Id == nutrientEntryId)
-                .FirstOrDefaultAsync();
+            var nutrientEntry = await _dataService.GetNutrientEntryAsync(
+                foodId, nutrientEntryId);
             if (nutrientEntry == null)
             {
                 return NotFound();
             }
 
-            _context.NutrientEntries.Remove(nutrientEntry);
-            await _context.SaveChangesAsync();
+            await _dataService.RemoveNutrientEntry(nutrientEntry);
 
             return _mapper.Map<NutrientEntryDto>(nutrientEntry);
         }
-
-        private bool NutrientEntryExists(int nutrientEntryId) =>
-            _context.NutrientEntries.Any(ne => ne.Id == nutrientEntryId);
     }
 }

@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using YellowFoods.Data;
+using YellowFoods.Data.Services.Abstractions;
 using YellowFoods.Dtos;
 
 namespace YellowFoods.Controllers
@@ -14,38 +12,33 @@ namespace YellowFoods.Controllers
     [ApiController]
     public class UnitsController : ControllerBase
     {
-        private readonly YellowFoodsContext _context;
-        private readonly IConfigurationProvider _configuration;
+        private readonly IUnitsDataService _dataService;
+        private readonly IMapper _mapper;
 
-        public UnitsController(YellowFoodsContext context,
-            IConfigurationProvider configuration)
+        public UnitsController(IUnitsDataService dataService, IMapper mapper)
         {
-            _context = context;
-            _configuration = configuration;
+            _dataService = dataService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UnitDto>>> GetUnits()
         {
-            return await _context.Units
-                .ProjectTo<UnitDto>(_configuration)
-                .ToListAsync();
+            var nutrients = await _dataService.GetUnitsAsync();
+
+            return _mapper.Map<IEnumerable<UnitDto>>(nutrients).ToList();
         }
 
         [HttpGet("{unitId}")]
         public async Task<ActionResult<UnitDto>> GetUnit(int unitId)
         {
-            var unitDto = await _context.Units
-                .Where(u => u.Id == unitId)
-                .ProjectTo<UnitDto>(_configuration)
-                .FirstOrDefaultAsync();
-
-            if (unitDto == null)
+            var unit = await _dataService.GetUnitAsync(unitId);
+            if (unit == null)
             {
                 return NotFound();
             }
 
-            return unitDto;
+            return _mapper.Map<UnitDto>(unit);
         }
     }
 }
