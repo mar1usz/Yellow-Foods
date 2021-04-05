@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using YellowFoods.Data.Data;
 using YellowFoods.Data.Models;
+using YellowFoods.Data.Services.Abstractions;
 using YellowFoods.Dtos;
 
 namespace YellowFoods.Controllers
@@ -15,16 +13,16 @@ namespace YellowFoods.Controllers
     [ApiController]
     public class FoodsController : ControllerBase
     {
-        private readonly YellowFoodsContext _context;
+        private readonly IFoodsDataService _dataService;
         private readonly IMapper _mapper;
         private readonly IConfigurationProvider _configuration;
 
         public FoodsController(
-            YellowFoodsContext context,
+            IFoodsDataService dataService,
             IMapper mapper,
             IConfigurationProvider configuration)
         {
-            _context = context;
+            _dataService = dataService;
             _mapper = mapper;
             _configuration = configuration;
         }
@@ -32,25 +30,20 @@ namespace YellowFoods.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FoodDto>>> GetFoods()
         {
-            return await _context.Foods
-                .ProjectTo<FoodDto>(_configuration)
-                .ToListAsync();
+            var foods = await _dataService.GetFoodsAsync();
+            return  _mapper.Map<IEnumerable<FoodDto>>(foods).ToList();
         }
 
         [HttpGet("{foodId}")]
         public async Task<ActionResult<FoodDto>> GetFood(int foodId)
         {
-            var foodDto = await _context.Foods
-                .Where(f => f.Id == foodId)
-                .ProjectTo<FoodDto>(_configuration)
-                .FirstOrDefaultAsync();
-
-            if (foodDto == null)
+            var food = await _dataService.GetFoodAsync(foodId);
+            if (food == null)
             {
                 return NotFound();
             }
 
-            return foodDto;
+            return _mapper.Map<FoodDto>(food);
         }
 
         [HttpPut("{foodId}")]
@@ -62,23 +55,7 @@ namespace YellowFoods.Controllers
             }
 
             var food = _mapper.Map<Food>(foodDto);
-            _context.Entry(food).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FoodExists(foodId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _dataService.UpdateFood(food);
 
             return NoContent();
         }
@@ -87,8 +64,7 @@ namespace YellowFoods.Controllers
         public async Task<ActionResult<FoodDto>> PostFood(FoodDto foodDto)
         {
             var food = _mapper.Map<Food>(foodDto);
-            _context.Foods.Add(food);
-            await _context.SaveChangesAsync();
+            await _dataService.AddFood(food);
 
             return CreatedAtAction(
                 nameof(GetFood),
@@ -99,19 +75,14 @@ namespace YellowFoods.Controllers
         [HttpDelete("{foodId}")]
         public async Task<ActionResult<FoodDto>> DeleteFood(int foodId)
         {
-            var food = await _context.Foods.FindAsync(foodId);
+            var food = await _dataService.GetFoodAsync(foodId);
             if (food == null)
             {
                 return NotFound();
             }
 
-            _context.Foods.Remove(food);
-            await _context.SaveChangesAsync();
-
+            await _dataService.RemoveFood(food);
             return _mapper.Map<FoodDto>(food);
         }
-
-        private bool FoodExists(int foodId) =>
-            _context.Foods.Any(f => f.Id == foodId);
     }
 }

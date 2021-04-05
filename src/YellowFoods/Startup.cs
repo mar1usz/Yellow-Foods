@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using YellowFoods.Data.Data;
+using YellowFoods.Data;
+using YellowFoods.Data.Services;
+using YellowFoods.Data.Services.Abstractions;
 
 namespace YellowFoods
 {
@@ -21,6 +23,8 @@ namespace YellowFoods
         {
             services.AddDbContext<YellowFoodsContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("YellowFoodsContext")));
+
+            services.AddScoped<IFoodsDataService, FoodsDataService>();
 
             services.AddAutoMapper(typeof(Startup));
 

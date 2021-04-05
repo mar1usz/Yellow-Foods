@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using YellowFoods.Data.Models;
 
-namespace YellowFoods.Data.Data
+namespace YellowFoods.Data
 {
     public class YellowFoodsContext : DbContext
     {
