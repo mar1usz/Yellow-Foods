@@ -19,15 +19,15 @@ GET api/foods/1/nutriententries
 [
   {
     "id": 1,
-    "nutrientId": 7,
     "foodId": 1,
+    "nutrientId": 7,
     "unitId": 2,
     "amount": 1.10
   },
   {
     "id": 21,
-    "nutrientId": 1,
     "foodId": 1,
+    "nutrientId": 1,
     "unitId": 1,
     "amount": 89.00
   },
