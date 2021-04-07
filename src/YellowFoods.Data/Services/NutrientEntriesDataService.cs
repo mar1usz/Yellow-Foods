@@ -19,7 +19,8 @@ namespace YellowFoods.Data.Services
         public async Task<IEnumerable<NutrientEntry>> GetNutrientEntriesAsync(
             int foodId)
         {
-            return await GetNutrientEntriesAsQueryable(foodId).ToListAsync();
+            return await GetNutrientEntriesAsQueryable(foodId)
+                .ToListAsync();
         }
 
         public async Task<NutrientEntry> GetNutrientEntryAsync(
