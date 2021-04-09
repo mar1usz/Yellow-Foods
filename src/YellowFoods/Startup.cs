@@ -22,10 +22,12 @@ namespace YellowFoods
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<YellowFoodsContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("YellowFoodsContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString(
+                        "YellowFoodsContext")));
 
             services.AddScoped<IFoodsDataService, FoodsDataService>();
-            services.AddScoped<INutrientEntriesDataService, NutrientEntriesDataService>();
+            services.AddScoped<INutrientEntriesDataService,
+                NutrientEntriesDataService>();
             services.AddScoped<INutrientsDataService, NutrientsDataService>();
             services.AddScoped<IUnitsDataService, UnitsDataService>();
 

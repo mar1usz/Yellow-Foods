@@ -29,8 +29,8 @@ namespace YellowFoods.Controllers
         public async Task<ActionResult<IEnumerable<NutrientEntryDto>>>
             GetNutrientEntries(int foodId)
         {
-            var nutrientEntries = await _dataService.GetNutrientEntriesAsync(
-                foodId);
+            var nutrientEntries = await _dataService
+                .GetNutrientEntriesAsync(foodId);
 
             return _mapper.Map<IEnumerable<NutrientEntryDto>>(nutrientEntries)
                 .ToList();
@@ -41,8 +41,8 @@ namespace YellowFoods.Controllers
             int foodId,
             int nutrientEntryId)
         {
-            var nutrientEntry = await _dataService.GetNutrientEntryAsync(
-                foodId, nutrientEntryId);
+            var nutrientEntry = await _dataService
+                .GetNutrientEntryAsync(foodId, nutrientEntryId);
             if (nutrientEntry == null)
             {
                 return NotFound();
@@ -93,8 +93,8 @@ namespace YellowFoods.Controllers
             int foodId,
             int nutrientEntryId)
         {
-            var nutrientEntry = await _dataService.GetNutrientEntryAsync(
-                foodId, nutrientEntryId);
+            var nutrientEntry = await _dataService
+                .GetNutrientEntryAsync(foodId, nutrientEntryId);
             if (nutrientEntry == null)
             {
                 return NotFound();
