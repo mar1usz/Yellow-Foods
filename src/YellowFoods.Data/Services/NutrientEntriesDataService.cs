@@ -32,15 +32,15 @@ namespace YellowFoods.Data.Services
                 .FirstOrDefaultAsync(ne => ne.Id == nutrientEntryId);
         }
 
-        public async Task UpdateNutrientEntry(NutrientEntry nutrientEntry)
-        {
-            _context.Update(nutrientEntry);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task AddNutrientEntry(NutrientEntry nutrientEntry)
         {
             _context.Add(nutrientEntry);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateNutrientEntry(NutrientEntry nutrientEntry)
+        {
+            _context.Update(nutrientEntry);
             await _context.SaveChangesAsync();
         }
 
