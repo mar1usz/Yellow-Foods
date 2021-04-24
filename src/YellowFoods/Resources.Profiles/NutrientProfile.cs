@@ -5,6 +5,7 @@ namespace YellowFoods.Resources.Profiles
 {
     public class NutrientProfile : Profile
     {
-        public NutrientProfile() => CreateMap<Nutrient, NutrientResource>().ReverseMap();
+        public NutrientProfile() =>
+            CreateMap<Nutrient, NutrientResource>().ReverseMap();
     }
 }
