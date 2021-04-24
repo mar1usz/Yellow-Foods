@@ -1,6 +1,6 @@
-﻿namespace YellowFoods.Dtos
+﻿namespace YellowFoods.Resources
 {
-    public class NutrientEntryDto
+    public class NutrientEntryResource
     {
         public int Id { get; set; }
         public int FoodId { get; set; }

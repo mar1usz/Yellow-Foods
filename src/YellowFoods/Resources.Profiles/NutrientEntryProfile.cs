@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using YellowFoods.Data.Models;
 
-namespace YellowFoods.Dtos.Profiles
+namespace YellowFoods.Resources.Profiles
 {
     public class NutrientEntryProfile : Profile
     {
         public NutrientEntryProfile() =>
-            CreateMap<NutrientEntry, NutrientEntryDto>().ReverseMap();
+            CreateMap<NutrientEntry, NutrientEntryResource>().ReverseMap();
     }
 }

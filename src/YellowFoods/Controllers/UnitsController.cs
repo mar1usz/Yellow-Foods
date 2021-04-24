@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YellowFoods.Data.Services.Abstractions;
-using YellowFoods.Dtos;
+using YellowFoods.Resources;
 
 namespace YellowFoods.Controllers
 {
@@ -22,15 +22,15 @@ namespace YellowFoods.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UnitDto>>> GetUnits()
+        public async Task<ActionResult<IEnumerable<UnitResource>>> GetUnits()
         {
             var nutrients = await _dataService.GetUnitsAsync();
 
-            return _mapper.Map<IEnumerable<UnitDto>>(nutrients).ToList();
+            return _mapper.Map<IEnumerable<UnitResource>>(nutrients).ToList();
         }
 
         [HttpGet("{unitId}")]
-        public async Task<ActionResult<UnitDto>> GetUnit(int unitId)
+        public async Task<ActionResult<UnitResource>> GetUnit(int unitId)
         {
             var unit = await _dataService.GetUnitAsync(unitId);
             if (unit == null)
@@ -38,7 +38,7 @@ namespace YellowFoods.Controllers
                 return NotFound();
             }
 
-            return _mapper.Map<UnitDto>(unit);
+            return _mapper.Map<UnitResource>(unit);
         }
     }
 }

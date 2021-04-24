@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using YellowFoods.Data.Models;
 using YellowFoods.Data.Services.Abstractions;
-using YellowFoods.Dtos;
+using YellowFoods.Resources;
 
 namespace YellowFoods.Controllers
 {
@@ -26,18 +26,19 @@ namespace YellowFoods.Controllers
         }
 
         [HttpGet("{foodId}/[controller]")]
-        public async Task<ActionResult<IEnumerable<NutrientEntryDto>>>
+        public async Task<ActionResult<IEnumerable<NutrientEntryResource>>>
             GetNutrientEntries(int foodId)
         {
             var nutrientEntries = await _dataService
                 .GetNutrientEntriesAsync(foodId);
 
-            return _mapper.Map<IEnumerable<NutrientEntryDto>>(nutrientEntries)
+            return _mapper
+                .Map<IEnumerable<NutrientEntryResource>>(nutrientEntries)
                 .ToList();
         }
 
         [HttpGet("{foodId}/[controller]/{nutrientEntryId}")]
-        public async Task<ActionResult<NutrientEntryDto>> GetNutrientEntry(
+        public async Task<ActionResult<NutrientEntryResource>> GetNutrientEntry(
             int foodId,
             int nutrientEntryId)
         {
@@ -48,50 +49,54 @@ namespace YellowFoods.Controllers
                 return NotFound();
             }
 
-            return _mapper.Map<NutrientEntryDto>(nutrientEntry);
+            return _mapper.Map<NutrientEntryResource>(nutrientEntry);
         }
 
         [HttpPut("{foodId}/[controller]/{nutrientEntryId}")]
         public async Task<IActionResult> PutNutrientEntry(
             int foodId,
             int nutrientEntryId,
-            NutrientEntryDto nutrientEntryDto)
+            NutrientEntryResource nutrientEntryResource)
         {
-            if (foodId != nutrientEntryDto.FoodId
-                || nutrientEntryId != nutrientEntryDto.Id)
+            if (foodId != nutrientEntryResource.FoodId
+                || nutrientEntryId != nutrientEntryResource.Id)
             {
                 return BadRequest();
             }
 
-            var nutrientEntry = _mapper.Map<NutrientEntry>(nutrientEntryDto);
+            var nutrientEntry = _mapper
+                .Map<NutrientEntry>(nutrientEntryResource);
             await _dataService.UpdateNutrientEntry(nutrientEntry);
 
             return NoContent();
         }
 
         [HttpPost("{foodId}/[controller]")]
-        public async Task<ActionResult<NutrientEntryDto>> PostNutrientEntry(
-            int foodId,
-            NutrientEntryDto nutrientEntryDto)
+        public async Task<ActionResult<NutrientEntryResource>>
+            PostNutrientEntry(
+                int foodId,
+                NutrientEntryResource nutrientEntryResource)
         {
-            if (foodId != nutrientEntryDto.FoodId)
+            if (foodId != nutrientEntryResource.FoodId)
             {
                 return BadRequest();
             }
 
-            var nutrientEntry = _mapper.Map<NutrientEntry>(nutrientEntryDto);
+            var nutrientEntry = _mapper
+                .Map<NutrientEntry>(nutrientEntryResource);
             await _dataService.AddNutrientEntry(nutrientEntry);
 
             return CreatedAtAction(
                 nameof(GetNutrientEntry),
                 new { foodId, nutrientEntryId = nutrientEntry.Id },
-                _mapper.Map<NutrientEntryDto>(nutrientEntry));
+                _mapper.Map<NutrientEntryResource>(nutrientEntry));
         }
 
         [HttpDelete("{foodId}/[controller]/{nutrientEntryId}")]
-        public async Task<ActionResult<NutrientEntryDto>> DeleteNutrientEntry(
-            int foodId,
-            int nutrientEntryId)
+        public async Task<ActionResult<NutrientEntryResource>>
+            DeleteNutrientEntry(
+                int foodId,
+                int nutrientEntryId)
         {
             var nutrientEntry = await _dataService
                 .GetNutrientEntryAsync(foodId, nutrientEntryId);
@@ -102,7 +107,7 @@ namespace YellowFoods.Controllers
 
             await _dataService.RemoveNutrientEntry(nutrientEntry);
 
-            return _mapper.Map<NutrientEntryDto>(nutrientEntry);
+            return _mapper.Map<NutrientEntryResource>(nutrientEntry);
         }
     }
 }
