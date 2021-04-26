@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using YellowFoods.Data.Models;
 using YellowFoods.Data.Services.Abstractions;
+using YellowFoods.Links.Services.Abstractions;
 using YellowFoods.Resources;
 
 namespace YellowFoods.Controllers
@@ -16,25 +17,29 @@ namespace YellowFoods.Controllers
     {
         private readonly INutrientEntriesDataService _dataService;
         private readonly IMapper _mapper;
+        private readonly ILinkService<NutrientEntryResource> _linkService;
 
         public NutrientEntriesController(
             INutrientEntriesDataService dataService,
-            IMapper mapper)
+            IMapper mapper,
+            ILinkService<NutrientEntryResource> linkService)
         {
             _dataService = dataService;
             _mapper = mapper;
+            _linkService = linkService;
         }
 
         [HttpGet("{foodId}/[controller]")]
         public async Task<ActionResult<IEnumerable<NutrientEntryResource>>>
             GetNutrientEntries(int foodId)
         {
-            var nutrientEntries = await _dataService
-                .GetNutrientEntriesAsync(foodId);
+            var nutrientEntries = await _dataService.GetNutrientEntriesAsync(
+                foodId);
 
-            return _mapper
-                .Map<IEnumerable<NutrientEntryResource>>(nutrientEntries)
-                .ToList();
+            var resources = _mapper.Map<IEnumerable<NutrientEntryResource>>(
+                nutrientEntries);
+            _linkService.AddLinks(resources);
+            return resources.ToList();
         }
 
         [HttpGet("{foodId}/[controller]/{nutrientEntryId}")]
@@ -42,30 +47,31 @@ namespace YellowFoods.Controllers
             int foodId,
             int nutrientEntryId)
         {
-            var nutrientEntry = await _dataService
-                .GetNutrientEntryAsync(foodId, nutrientEntryId);
+            var nutrientEntry = await _dataService.GetNutrientEntryAsync(
+                foodId, nutrientEntryId);
             if (nutrientEntry == null)
             {
                 return NotFound();
             }
 
-            return _mapper.Map<NutrientEntryResource>(nutrientEntry);
+            var resource = _mapper.Map<NutrientEntryResource>(nutrientEntry);
+            _linkService.AddLinks(resource);
+            return resource;
         }
 
         [HttpPut("{foodId}/[controller]/{nutrientEntryId}")]
         public async Task<IActionResult> PutNutrientEntry(
             int foodId,
             int nutrientEntryId,
-            NutrientEntryResource nutrientEntryResource)
+            NutrientEntryResource resource)
         {
-            if (foodId != nutrientEntryResource.FoodId
-                || nutrientEntryId != nutrientEntryResource.Id)
+            if (foodId != resource.FoodId
+                || nutrientEntryId != resource.Id)
             {
                 return BadRequest();
             }
 
-            var nutrientEntry = _mapper
-                .Map<NutrientEntry>(nutrientEntryResource);
+            var nutrientEntry = _mapper.Map<NutrientEntry>(resource);
             await _dataService.UpdateNutrientEntry(nutrientEntry);
 
             return NoContent();
@@ -73,33 +79,31 @@ namespace YellowFoods.Controllers
 
         [HttpPost("{foodId}/[controller]")]
         public async Task<ActionResult<NutrientEntryResource>>
-            PostNutrientEntry(
-                int foodId,
-                NutrientEntryResource nutrientEntryResource)
+            PostNutrientEntry(int foodId, NutrientEntryResource resource)
         {
-            if (foodId != nutrientEntryResource.FoodId)
+            if (foodId != resource.FoodId)
             {
                 return BadRequest();
             }
 
-            var nutrientEntry = _mapper
-                .Map<NutrientEntry>(nutrientEntryResource);
+            var nutrientEntry = _mapper.Map<NutrientEntry>(resource);
             await _dataService.AddNutrientEntry(nutrientEntry);
 
+            var addedResource = _mapper.Map<NutrientEntryResource>(
+                nutrientEntry);
+            _linkService.AddLinks(addedResource);
             return CreatedAtAction(
                 nameof(GetNutrientEntry),
-                new { foodId, nutrientEntryId = nutrientEntry.Id },
-                _mapper.Map<NutrientEntryResource>(nutrientEntry));
+                new { foodId, nutrientEntryId = addedResource.Id },
+                addedResource);
         }
 
         [HttpDelete("{foodId}/[controller]/{nutrientEntryId}")]
         public async Task<ActionResult<NutrientEntryResource>>
-            DeleteNutrientEntry(
-                int foodId,
-                int nutrientEntryId)
+            DeleteNutrientEntry(int foodId, int nutrientEntryId)
         {
-            var nutrientEntry = await _dataService
-                .GetNutrientEntryAsync(foodId, nutrientEntryId);
+            var nutrientEntry = await _dataService.GetNutrientEntryAsync(
+                foodId, nutrientEntryId);
             if (nutrientEntry == null)
             {
                 return NotFound();
@@ -107,7 +111,9 @@ namespace YellowFoods.Controllers
 
             await _dataService.RemoveNutrientEntry(nutrientEntry);
 
-            return _mapper.Map<NutrientEntryResource>(nutrientEntry);
+            var resource = _mapper.Map<NutrientEntryResource>(nutrientEntry);
+            _linkService.AddLinks(resource);
+            return resource;
         }
     }
 }

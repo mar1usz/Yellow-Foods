@@ -7,6 +7,11 @@ using Microsoft.Extensions.Hosting;
 using YellowFoods.Data.Data;
 using YellowFoods.Data.Services;
 using YellowFoods.Data.Services.Abstractions;
+using YellowFoods.Links.Generators;
+using YellowFoods.Links.Generators.Abstractions;
+using YellowFoods.Links.Services;
+using YellowFoods.Links.Services.Abstractions;
+using YellowFoods.Resources;
 
 namespace YellowFoods
 {
@@ -32,6 +37,18 @@ namespace YellowFoods
             services.AddScoped<IUnitsDataService, UnitsDataService>();
 
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddScoped<INutrientEntriesGenerator,
+                NutrientEntriesGenerator>();
+
+            services.AddScoped<ILinkService<NutrientEntryResource>,
+                NutrientEntryLinkService>();
+
+            services.AddRouting(options =>
+            {
+                options.LowercaseUrls = true;
+                options.LowercaseQueryStrings = true;
+            });
 
             services.AddControllers();
         }

@@ -1,6 +1,8 @@
-﻿namespace YellowFoods.Resources
+﻿using YellowFoods.Resources.Abstractions;
+
+namespace YellowFoods.Resources
 {
-    public class NutrientEntryResource
+    public class NutrientEntryResource : Resource
     {
         public int Id { get; set; }
         public int FoodId { get; set; }
