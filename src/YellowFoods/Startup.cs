@@ -38,9 +38,11 @@ namespace YellowFoods
 
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddScoped<IFoodsGenerator, FoodsGenerator>();
             services.AddScoped<INutrientEntriesGenerator,
                 NutrientEntriesGenerator>();
 
+            services.AddScoped<ILinkService<FoodResource>, FoodLinkService>();
             services.AddScoped<ILinkService<NutrientEntryResource>,
                 NutrientEntryLinkService>();
 

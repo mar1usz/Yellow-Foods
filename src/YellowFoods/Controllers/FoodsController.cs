@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using YellowFoods.Data.Models;
 using YellowFoods.Data.Services.Abstractions;
+using YellowFoods.Links.Services.Abstractions;
 using YellowFoods.Resources;
 
 namespace YellowFoods.Controllers
@@ -15,18 +16,26 @@ namespace YellowFoods.Controllers
     {
         private readonly IFoodsDataService _dataService;
         private readonly IMapper _mapper;
+        private readonly ILinkService<FoodResource> _linkService; 
 
-        public FoodsController(IFoodsDataService dataService, IMapper mapper)
+        public FoodsController(
+            IFoodsDataService dataService,
+            IMapper mapper,
+            ILinkService<FoodResource> linkService)
         {
             _dataService = dataService;
             _mapper = mapper;
+            _linkService = linkService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FoodResource>>> GetFoods()
         {
             var foods = await _dataService.GetFoodsAsync();
-            return _mapper.Map<IEnumerable<FoodResource>>(foods).ToList();
+
+            var resources = _mapper.Map<IEnumerable<FoodResource>>(foods);
+            _linkService.AddLinks(resources);
+            return resources.ToList();
         }
 
         [HttpGet("{foodId}")]
@@ -38,7 +47,9 @@ namespace YellowFoods.Controllers
                 return NotFound();
             }
 
-            return _mapper.Map<FoodResource>(food);
+            var resource = _mapper.Map<FoodResource>(food);
+            _linkService.AddLinks(resource);
+            return resource;
         }
 
         [HttpPut("{foodId}")]
@@ -64,10 +75,13 @@ namespace YellowFoods.Controllers
             var food = _mapper.Map<Food>(foodResource);
             await _dataService.AddFood(food);
 
+            var addedResource = _mapper.Map<FoodResource>(
+                food);
+            _linkService.AddLinks(addedResource);
             return CreatedAtAction(
                 nameof(GetFood),
                 new { foodId = food.Id },
-                _mapper.Map<FoodResource>(food));
+                addedResource);
         }
 
         [HttpDelete("{foodId}")]
@@ -81,7 +95,9 @@ namespace YellowFoods.Controllers
 
             await _dataService.RemoveFood(food);
 
-            return _mapper.Map<FoodResource>(food);
+             var resource = _mapper.Map<FoodResource>(food);
+            _linkService.AddLinks(resource);
+            return resource;
         }
     }
 }
