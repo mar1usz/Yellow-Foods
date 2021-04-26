@@ -26,7 +26,7 @@ namespace YellowFoods.Controllers
         public async Task<ActionResult<IEnumerable<FoodResource>>> GetFoods()
         {
             var foods = await _dataService.GetFoodsAsync();
-            return  _mapper.Map<IEnumerable<FoodResource>>(foods).ToList();
+            return _mapper.Map<IEnumerable<FoodResource>>(foods).ToList();
         }
 
         [HttpGet("{foodId}")]
