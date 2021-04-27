@@ -11,8 +11,8 @@ namespace YellowFoods.Data
         }
 
         public DbSet<Food> Foods { get; set; }
-        public DbSet<NutrientEntry> NutrientEntries { get; set; }
         public DbSet<Nutrient> Nutrients { get; set; }
+        public DbSet<NutrientEntry> NutrientEntries { get; set; }
         public DbSet<Unit> Units { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
