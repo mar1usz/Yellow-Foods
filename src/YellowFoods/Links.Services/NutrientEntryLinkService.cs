@@ -8,13 +8,19 @@ namespace YellowFoods.Links.Services
     {
         private readonly INutrientEntriesGenerator _nutrientEntriesGenerator;
         private readonly IFoodsGenerator _foodsGenerator;
+        private readonly INutrientsGenerator _nutrientsGenerator;
+        private readonly IUnitsGenerator _unitsGenerator;
 
         public NutrientEntryLinkService(
             INutrientEntriesGenerator nutrientEntriesGenerator,
-            IFoodsGenerator foodsGenerator)
+            IFoodsGenerator foodsGenerator,
+            INutrientsGenerator nutrientsGenerator,
+            IUnitsGenerator unitsGenerator)
         {
             _nutrientEntriesGenerator = nutrientEntriesGenerator;
             _foodsGenerator = foodsGenerator;
+            _nutrientsGenerator = nutrientsGenerator;
+            _unitsGenerator = unitsGenerator;
         }
 
         public void AddLinks(NutrientEntryResource resource)
@@ -29,6 +35,10 @@ namespace YellowFoods.Links.Services
             AddPostFoodLink(resource);
             AddPutFoodLink(resource);
             AddDeleteFoodLink(resource);
+            AddGetNutrientsLink(resource);
+            AddGetNutrientLink(resource);
+            AddGetUnitsLink(resource);
+            AddGetUnitLink(resource);
         }
 
         private void AddGetNutrientEntriesLink(NutrientEntryResource resource)
@@ -102,6 +112,32 @@ namespace YellowFoods.Links.Services
             resource.AddLink(_foodsGenerator.GetDeleteFoodLink(
                     Relationships.Food,
                     resource.FoodId));
+        }
+
+        private void AddGetNutrientsLink(NutrientEntryResource resource)
+        {
+            resource.AddLink(_nutrientsGenerator.GetGetNutrientsLink(
+                Relationships.Nutrient));
+        }
+
+        private void AddGetNutrientLink(NutrientEntryResource resource)
+        {
+            resource.AddLink(_nutrientsGenerator.GetGetNutrientLink(
+                Relationships.Nutrient,
+                resource.Id));
+        }
+
+        private void AddGetUnitsLink(NutrientEntryResource resource)
+        {
+            resource.AddLink(_unitsGenerator.GetGetUnitsLink(
+                Relationships.Unit));
+        }
+
+        private void AddGetUnitLink(NutrientEntryResource resource)
+        {
+            resource.AddLink(_unitsGenerator.GetGetUnitLink(
+                Relationships.Unit,
+                resource.UnitId));
         }
     }
 }

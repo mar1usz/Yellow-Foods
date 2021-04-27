@@ -31,20 +31,25 @@ namespace YellowFoods
                         "YellowFoodsContext")));
 
             services.AddScoped<IFoodsDataService, FoodsDataService>();
+            services.AddScoped<INutrientsDataService, NutrientsDataService>();
             services.AddScoped<INutrientEntriesDataService,
                 NutrientEntriesDataService>();
-            services.AddScoped<INutrientsDataService, NutrientsDataService>();
             services.AddScoped<IUnitsDataService, UnitsDataService>();
 
             services.AddAutoMapper(typeof(Startup));
 
             services.AddScoped<IFoodsGenerator, FoodsGenerator>();
+            services.AddScoped<INutrientsGenerator, NutrientsGenerator>();
             services.AddScoped<INutrientEntriesGenerator,
                 NutrientEntriesGenerator>();
+            services.AddScoped<IUnitsGenerator, UnitsGenerator>();
 
             services.AddScoped<ILinkService<FoodResource>, FoodLinkService>();
+            services.AddScoped<ILinkService<NutrientResource>,
+                NutrientLinkService>();
             services.AddScoped<ILinkService<NutrientEntryResource>,
                 NutrientEntryLinkService>();
+            services.AddScoped<ILinkService<UnitResource>, UnitLinkService>();
 
             services.AddRouting(options =>
             {

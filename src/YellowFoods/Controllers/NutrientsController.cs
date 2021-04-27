@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YellowFoods.Data.Services.Abstractions;
+using YellowFoods.Links.Services.Abstractions;
 using YellowFoods.Resources;
 
 namespace YellowFoods.Controllers
@@ -14,12 +15,16 @@ namespace YellowFoods.Controllers
     {
         private readonly INutrientsDataService _dataService;
         private readonly IMapper _mapper;
+        private readonly ILinkService<NutrientResource> _linkService;
 
-        public NutrientsController(INutrientsDataService dataService,
-            IMapper mapper)
+        public NutrientsController(
+            INutrientsDataService dataService,
+            IMapper mapper,
+            ILinkService<NutrientResource> linkService)
         {
             _dataService = dataService;
             _mapper = mapper;
+            _linkService = linkService;
         }
 
         [HttpGet]
@@ -27,8 +32,11 @@ namespace YellowFoods.Controllers
             GetNutrients()
         {
             var nutrients = await _dataService.GetNutrientsAsync();
-            return _mapper.Map<IEnumerable<NutrientResource>>(nutrients)
-                .ToList();
+
+            var resources = _mapper.Map<IEnumerable<NutrientResource>>(
+                nutrients);
+            _linkService.AddLinks(resources);
+            return resources.ToList();
         }
 
         [HttpGet("{nutrientId}")]
@@ -41,7 +49,9 @@ namespace YellowFoods.Controllers
                 return NotFound();
             }
 
-            return _mapper.Map<NutrientResource>(nutrient);
+            var resource = _mapper.Map<NutrientResource>(nutrient);
+            _linkService.AddLinks(resource);
+            return resource;
         }
     }
 }
