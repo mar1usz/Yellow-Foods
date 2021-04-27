@@ -30,7 +30,7 @@ GET api/foods/1/nutriententries
     "nutrientId": 7,
     "unitId": 2,
     "amount": 1.10,
-    "links":[
+    "links": [
       { "rel": "self", "href": "/api/foods/1/nutriententries", "action": "GET" },
       { "rel": "self", "href": "/api/foods/1/nutriententries/1", "action": "GET" },
       { "rel": "self", "href": "/api/foods/1/nutriententries", "action": "POST" },
@@ -53,7 +53,7 @@ GET api/foods/1/nutriententries
     "nutrientId": 1,
     "unitId": 1,
     "amount": 89.00,
-    "links":[
+    "links": [
       { "rel": "self", "href": "/api/foods/1/nutriententries", "action": "GET" },
       { "rel": "self", "href": "/api/foods/1/nutriententries/21", "action": "GET" },
       { "rel": "self", "href": "/api/foods/1/nutriententries", "action": "POST" },
