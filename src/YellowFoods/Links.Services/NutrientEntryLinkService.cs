@@ -124,7 +124,7 @@ namespace YellowFoods.Links.Services
         {
             resource.AddLink(_nutrientsGenerator.GetGetNutrientLink(
                 Relationships.Nutrient,
-                resource.Id));
+                resource.NutrientId));
         }
 
         private void AddGetUnitsLink(NutrientEntryResource resource)
