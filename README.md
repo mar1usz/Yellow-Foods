@@ -1,7 +1,7 @@
 # Yellow Foods HATEOAS
 A database-backed REST API in C# ASP.NET Core:
 ```HTTP
-GET api/foods/1
+GET /api/foods/1
 ```
 
 ```JavaScript
@@ -19,7 +19,7 @@ GET api/foods/1
 ```
 
 ```HTTP
-GET api/foods/1/nutriententries
+GET /api/foods/1/nutriententries
 ```
 
 ```JavaScript
