@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using YellowFoods.Data.Data;
+using YellowFoods.Data;
 using YellowFoods.Data.Services;
 using YellowFoods.Data.Services.Abstractions;
 using YellowFoods.Links.Generators;
