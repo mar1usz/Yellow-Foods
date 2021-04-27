@@ -12,13 +12,15 @@ namespace YellowFoods.Extensions
             object values = null,
             PathString pathBase = default,
             FragmentString fragment = default,
-            LinkOptions options = null) =>
-                generator.GetPathByAction(
-                    action,
-                    controller.Replace("Controller", string.Empty),
-                    values,
-                    pathBase,
-                    fragment,
-                    options);
+            LinkOptions options = null)
+        {
+            return generator.GetPathByAction(
+                action,
+                controller.Replace("Controller", string.Empty),
+                values,
+                pathBase,
+                fragment,
+                options);
+        }
     }
 }
