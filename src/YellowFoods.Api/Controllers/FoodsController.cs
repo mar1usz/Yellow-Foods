@@ -32,7 +32,6 @@ namespace YellowFoods.Controllers
         public async Task<ActionResult<IEnumerable<FoodResource>>> GetFoods()
         {
             var foods = await _dataService.GetFoodsAsync();
-
             var resources = _mapper.Map<IEnumerable<FoodResource>>(foods);
             _linkService.AddLinks(resources);
             return resources.ToList();
