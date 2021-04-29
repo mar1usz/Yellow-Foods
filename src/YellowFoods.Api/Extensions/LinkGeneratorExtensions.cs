@@ -10,7 +10,7 @@ namespace YellowFoods.Api.Extensions
             HttpContext httpContext,
             string action,
             string controller,
-            object values)
+            object values = null)
         {
             string suffix = "Controller";
 
