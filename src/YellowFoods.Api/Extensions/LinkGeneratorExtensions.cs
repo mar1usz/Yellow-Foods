@@ -17,11 +17,12 @@ namespace YellowFoods.Api.Extensions
             FragmentString fragment = default,
             LinkOptions options = null)
         {
-            string controllerSuffix = "Controller";
+            string suffix = "Controller";
 
-            if (controller != null && controller.EndsWith(controllerSuffix))
+            if (controller != null
+                && controller.EndsWith(suffix))
             {
-                int index = controller.LastIndexOf(controllerSuffix);
+                int index = controller.LastIndexOf(suffix);
                 controller = controller.Remove(index);
             }
 
