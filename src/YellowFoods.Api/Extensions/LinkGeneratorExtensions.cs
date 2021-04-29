@@ -17,10 +17,15 @@ namespace YellowFoods.Api.Extensions
             FragmentString fragment = default,
             LinkOptions options = null)
         {
+            if (controller != null)
+            {
+                controller = controller.RemoveSuffix("Controller");
+            }
+
             return generator.GetUriByAction(
                 httpContext,
                 action,
-                controller.RemoveSuffix("Controller"),
+                controller,
                 values,
                 scheme,
                 host,

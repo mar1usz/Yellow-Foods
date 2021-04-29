@@ -4,13 +4,13 @@
     {
         public static string RemoveSuffix(this string value, string suffix)
         {
-            if (value != null && value.EndsWith(suffix))
+            if (!value.EndsWith(suffix))
             {
-                int index = value.LastIndexOf(suffix);
-                value = value.Remove(index);
+                return value;
             }
 
-            return value;
+            int index = value.LastIndexOf(suffix);
+            return value.Remove(index);
         }
     }
 }
