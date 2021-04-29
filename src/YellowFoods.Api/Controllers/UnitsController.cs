@@ -30,8 +30,8 @@ namespace YellowFoods.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UnitResource>>> GetUnits()
         {
-            var nutrients = await _dataService.GetUnitsAsync();
-            var resources = _mapper.Map<IEnumerable<UnitResource>>(nutrients);
+            var units = await _dataService.GetUnitsAsync();
+            var resources = _mapper.Map<IEnumerable<UnitResource>>(units);
             _linkService.AddLinks(resources);
             return resources.ToList();
         }
