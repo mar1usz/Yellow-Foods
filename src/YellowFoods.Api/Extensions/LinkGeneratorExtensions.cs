@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using System;
 
 namespace YellowFoods.Api.Extensions
 {
@@ -12,10 +13,18 @@ namespace YellowFoods.Api.Extensions
             string controller,
             object values = null)
         {
-            string suffix = "Controller";
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
 
-            if (controller != null
-                && controller.EndsWith(suffix))
+            if (controller == null)
+            {
+                throw new ArgumentNullException(nameof(controller));
+            }
+
+            string suffix = "Controller";
+            if (controller.EndsWith(suffix))
             {
                 int index = controller.LastIndexOf(suffix);
                 controller = controller.Remove(index);
