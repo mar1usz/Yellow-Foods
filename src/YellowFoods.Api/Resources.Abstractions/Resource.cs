@@ -5,7 +5,7 @@ namespace YellowFoods.Api.Resources.Abstractions
 {
     public abstract class Resource
     {
-        public IList<Link> Links { get; set; } = new List<Link> { };
+        public List<Link> Links { get; set; } = new List<Link> { };
 
         public void AddLink(Link link)
         {
@@ -14,10 +14,7 @@ namespace YellowFoods.Api.Resources.Abstractions
 
         public void AddLinks(IEnumerable<Link> links)
         {
-            foreach (var link in links)
-            {
-                AddLink(link);
-            }
+            Links.AddRange(links);
         }
     }
 }
