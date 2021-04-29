@@ -19,8 +19,7 @@ namespace YellowFoods.Api.Extensions
         {
             string controllerSuffix = "Controller";
 
-            if (controller != null
-                && controller.EndsWith(controllerSuffix))
+            if (controller != null && controller.EndsWith(controllerSuffix))
             {
                 int index = controller.LastIndexOf(controllerSuffix);
                 controller = controller.Remove(index);
