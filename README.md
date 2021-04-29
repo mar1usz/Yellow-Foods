@@ -1,5 +1,5 @@
 # Yellow Foods HATEOAS
-A database-backed REST API in C# ASP.NET Core:
+A hypermedia-driven database-backed REST API in C# ASP.NET Core:
 ```HTTP
 GET api/foods/1
 ```
