@@ -9,11 +9,11 @@ GET api/foods/1
   "id": 1,
   "name": "Banana",
   "links": [
-    { "rel": "self", "href": "/api/foods", "action": "GET" },
-    { "rel": "self", "href": "/api/foods/1", "action": "GET" },
-    { "rel": "self", "href": "/api/foods", "action": "POST" },
-    { "rel": "self", "href": "/api/foods/1", "action": "PUT" },
-    { "rel": "self", "href": "/api/foods/1", "action": "DELETE" }
+    { "rel": "self" ,"href": "https://localhost:44339/api/foods", "action": "GET" },
+    { "rel": "self" ,"href": "https://localhost:44339/api/foods/1", "action": "GET" },
+    { "rel": "self" ,"href": "https://localhost:44339/api/foods", "action": "POST" },
+    { "rel": "self" ,"href": "https://localhost:44339/api/foods/1", "action": "PUT" },
+    { "rel": "self" ,"href": "https://localhost:44339/api/foods/1", "action": "DELETE" }
   ]
 }
 ```
@@ -31,20 +31,20 @@ GET api/foods/1/nutriententries
     "unitId": 2,
     "amount": 1.10,
     "links": [
-      { "rel": "self", "href": "/api/foods/1/nutriententries", "action": "GET" },
-      { "rel": "self", "href": "/api/foods/1/nutriententries/1", "action": "GET" },
-      { "rel": "self", "href": "/api/foods/1/nutriententries", "action": "POST" },
-      { "rel": "self", "href": "/api/foods/1/nutriententries/1", "action": "PUT" },
-      { "rel": "self", "href": "/api/foods/1/nutriententries/1", "action": "DELETE" },
-      { "rel": "food", "href": "/api/foods", "action": "GET" },
-      { "rel": "food", "href": "/api/foods/1", "action": "GET" },
-      { "rel": "food", "href": "/api/foods", "action": "POST" },
-      { "rel": "food", "href": "/api/foods/1", "action": "PUT" },
-      { "rel": "food", "href": "/api/foods/1", "action": "DELETE" },
-      { "rel": "nutrient", "href": "/api/nutrients", "action": "GET" },
-      { "rel": "nutrient", "href": "/api/nutrients/1", "action": "GET" },
-      { "rel": "unit", "href": "/api/units", "action": "GET" },
-      { "rel": "unit", "href": "/api/units/2", "action": "GET" }
+      { "rel": "self", "href": "https://localhost:44339/api/foods/1/nutriententries", "action": "GET" },
+      { "rel": "self", "href": "https://localhost:44339/api/foods/1/nutriententries/1", "action": "GET" },
+      { "rel": "self", "href": "https://localhost:44339/api/foods/1/nutriententries", "action": "POST"},
+      { "rel": "self", "href": "https://localhost:44339/api/foods/1/nutriententries/1", "action": "PUT" },
+      { "rel": "self", "href": "https://localhost:44339/api/foods/1/nutriententries/1", "action": "DELETE" },
+      { "rel": "food", "href": "https://localhost:44339/api/foods", "action": "GET" },
+      { "rel": "food", "href": "https://localhost:44339/api/foods/1", "action": "GET" },
+      { "rel": "food", "href": "https://localhost:44339/api/foods", "action": "POST"},
+      { "rel": "food", "href": "https://localhost:44339/api/foods/1", "action": "PUT" },
+      { "rel": "food", "href": "https://localhost:44339/api/foods/1", "action": "DELETE" },
+      { "rel": "nutrient", "href": "https://localhost:44339/api/nutrients", "action": "GET" },
+      { "rel": "nutrient", "href": "https://localhost:44339/api/nutrients/7", "action": "GET" },
+      { "rel": "unit", "href": "https://localhost:44339/api/units", "action": "GET" },
+      { "rel": "unit", "href": "https://localhost:44339/api/units/2", "action": "GET" }
     ]
   },
   {
@@ -54,20 +54,20 @@ GET api/foods/1/nutriententries
     "unitId": 1,
     "amount": 89.00,
     "links": [
-      { "rel": "self", "href": "/api/foods/1/nutriententries", "action": "GET" },
-      { "rel": "self", "href": "/api/foods/1/nutriententries/21", "action": "GET" },
-      { "rel": "self", "href": "/api/foods/1/nutriententries", "action": "POST" },
-      { "rel": "self", "href": "/api/foods/1/nutriententries/21", "action": "PUT" },
-      { "rel": "self", "href": "/api/foods/1/nutriententries/21", "action": "DELETE" },
-      { "rel": "food", "href": "/api/foods", "action": "GET" },
-      { "rel": "food", "href": "/api/foods/1", "action": "GET" },
-      { "rel": "food", "href": "/api/foods", "action": "POST" },
-      { "rel": "food", "href": "/api/foods/1", "action": "PUT" },
-      { "rel": "food", "href": "/api/foods/1", "action": "DELETE" },
-      { "rel": "nutrient", "href": "/api/nutrients", "action": "GET" },
-      { "rel": "nutrient", "href": "/api/nutrients/21", "action": "GET" },
-      { "rel": "unit", "href": "/api/units", "action": "GET" },
-      { "rel": "unit", "href": "/api/units/1", "action": "GET" }
+      { "rel": "self", "href": "https://localhost:44339/api/foods/1/nutriententries", "action": "GET" },
+      { "rel": "self", "href": "https://localhost:44339/api/foods/1/nutriententries/21", "action": "GET" },
+      { "rel": "self", "href": "https://localhost:44339/api/foods/1/nutriententries", "action": "POST"},
+      { "rel": "self", "href": "https://localhost:44339/api/foods/1/nutriententries/21", "action": "PUT" },
+      { "rel": "self", "href": "https://localhost:44339/api/foods/1/nutriententries/21", "action": "DELETE" },
+      { "rel": "food", "href": "https://localhost:44339/api/foods", "action": "GET" },
+      { "rel": "food", "href": "https://localhost:44339/api/foods/1", "action": "GET" },
+      { "rel": "food", "href": "https://localhost:44339/api/foods", "action": "POST"},
+      { "rel": "food", "href": "https://localhost:44339/api/foods/1", "action": "PUT" },
+      { "rel": "food", "href": "https://localhost:44339/api/foods/1", "action": "DELETE" },
+      { "rel": "nutrient", "href": "https://localhost:44339/api/nutrients", "action": "GET" },
+      { "rel": "nutrient", "href": "https://localhost:44339/api/nutrients/1", "action": "GET" },
+      { "rel": "unit", "href": "https://localhost:44339/api/units", "action": "GET" },
+      { "rel": "unit", "href": "https://localhost:44339/api/units/1", "action": "GET" }
     ]
   },
   {...}
