@@ -23,17 +23,10 @@ namespace YellowFoods.Api.Extensions
                 throw new ArgumentNullException(nameof(controller));
             }
 
-            string suffix = "Controller";
-            if (controller.EndsWith(suffix))
-            {
-                int index = controller.LastIndexOf(suffix);
-                controller = controller.Remove(index);
-            }
-
             return generator.GetUriByAction(
                 httpContext,
                 action,
-                controller,
+                controller.RemoveSuffix("Controller"),
                 values);
         }
     }
