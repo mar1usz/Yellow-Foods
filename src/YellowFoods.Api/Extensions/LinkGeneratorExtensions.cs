@@ -8,14 +8,9 @@ namespace YellowFoods.Api.Extensions
         public static string GetUriByNameofAction(
             this LinkGenerator generator,
             HttpContext httpContext,
-            string action = null,
-            string controller = null,
-            object values = null,
-            string scheme = null,
-            HostString? host = null,
-            PathString? pathBase = null,
-            FragmentString fragment = default,
-            LinkOptions options = null)
+            string action,
+            string controller,
+            object values)
         {
             string suffix = "Controller";
 
@@ -30,12 +25,7 @@ namespace YellowFoods.Api.Extensions
                 httpContext,
                 action,
                 controller,
-                values,
-                scheme,
-                host,
-                pathBase,
-                fragment,
-                options);
+                values);
         }
     }
 }
