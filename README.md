@@ -9,11 +9,11 @@ GET api/foods/1
   "id": 1,
   "name": "Banana",
   "links": [
-    { "rel": "self" ,"href": "https://localhost:44339/api/foods", "action": "GET" },
-    { "rel": "self" ,"href": "https://localhost:44339/api/foods/1", "action": "GET" },
-    { "rel": "self" ,"href": "https://localhost:44339/api/foods", "action": "POST" },
-    { "rel": "self" ,"href": "https://localhost:44339/api/foods/1", "action": "PUT" },
-    { "rel": "self" ,"href": "https://localhost:44339/api/foods/1", "action": "DELETE" }
+    { "rel": "self", "href": "https://localhost:44339/api/foods", "action": "GET" },
+    { "rel": "self", "href": "https://localhost:44339/api/foods/1", "action": "GET" },
+    { "rel": "self", "href": "https://localhost:44339/api/foods", "action": "POST" },
+    { "rel": "self", "href": "https://localhost:44339/api/foods/1", "action": "PUT" },
+    { "rel": "self", "href": "https://localhost:44339/api/foods/1", "action": "DELETE" }
   ]
 }
 ```
