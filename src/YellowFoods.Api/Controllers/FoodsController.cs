@@ -54,14 +54,14 @@ namespace YellowFoods.Api.Controllers
         [HttpPut("{foodId}")]
         public async Task<IActionResult> PutFood(
             int foodId,
-            FoodResource foodResource)
+            FoodResource resource)
         {
-            if (foodId != foodResource.Id)
+            if (foodId != resource.Id)
             {
                 return BadRequest();
             }
 
-            var food = _mapper.Map<Food>(foodResource);
+            var food = _mapper.Map<Food>(resource);
             await _dataService.UpdateFood(food);
 
             return NoContent();
@@ -69,9 +69,9 @@ namespace YellowFoods.Api.Controllers
 
         [HttpPost]
         public async Task<ActionResult<FoodResource>> PostFood(
-            FoodResource foodResource)
+            FoodResource resource)
         {
-            var food = _mapper.Map<Food>(foodResource);
+            var food = _mapper.Map<Food>(resource);
             await _dataService.AddFood(food);
 
             var addedResource = _mapper.Map<FoodResource>(food);
