@@ -9,10 +9,14 @@ namespace YellowFoods.Api.Links.Generators
     public class FoodsGenerator : IFoodsGenerator
     {
         private readonly LinkGenerator _linkGenerator;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public FoodsGenerator(LinkGenerator linkGenerator)
+        public FoodsGenerator(
+            LinkGenerator linkGenerator,
+            IHttpContextAccessor httpContextAccessor)
         {
             _linkGenerator = linkGenerator;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public Link GetGetFoodsLink(string relationship)
@@ -20,7 +24,8 @@ namespace YellowFoods.Api.Links.Generators
             return new Link
             {
                 Rel = relationship,
-                Href = _linkGenerator.GetPathByControllerAction(
+                Href = _linkGenerator.GetUriByNameofAction(
+                    _httpContextAccessor.HttpContext,
                     nameof(FoodsController.GetFoods),
                     nameof(FoodsController)),
                 Action = HttpMethods.Get
@@ -32,7 +37,8 @@ namespace YellowFoods.Api.Links.Generators
             return new Link
             {
                 Rel = relationship,
-                Href = _linkGenerator.GetPathByControllerAction(
+                Href = _linkGenerator.GetUriByNameofAction(
+                    _httpContextAccessor.HttpContext,
                     nameof(FoodsController.GetFood),
                     nameof(FoodsController),
                     new { foodId }),
@@ -45,7 +51,8 @@ namespace YellowFoods.Api.Links.Generators
             return new Link
             {
                 Rel = relationship,
-                Href = _linkGenerator.GetPathByControllerAction(
+                Href = _linkGenerator.GetUriByNameofAction(
+                    _httpContextAccessor.HttpContext,
                     nameof(FoodsController.PostFood),
                     nameof(FoodsController)),
                 Action = HttpMethods.Post
@@ -57,7 +64,8 @@ namespace YellowFoods.Api.Links.Generators
             return new Link
             {
                 Rel = relationship,
-                Href = _linkGenerator.GetPathByControllerAction(
+                Href = _linkGenerator.GetUriByNameofAction(
+                    _httpContextAccessor.HttpContext,
                     nameof(FoodsController.PutFood),
                     nameof(FoodsController),
                     new { foodId }),
@@ -70,7 +78,8 @@ namespace YellowFoods.Api.Links.Generators
             return new Link
             {
                 Rel = relationship,
-                Href = _linkGenerator.GetPathByControllerAction(
+                Href = _linkGenerator.GetUriByNameofAction(
+                    _httpContextAccessor.HttpContext,
                     nameof(FoodsController.DeleteFood),
                     nameof(FoodsController),
                     new { foodId }),

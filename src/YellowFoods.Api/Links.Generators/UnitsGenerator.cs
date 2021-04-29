@@ -9,10 +9,14 @@ namespace YellowFoods.Api.Links.Generators
     public class UnitsGenerator : IUnitsGenerator
     {
         private readonly LinkGenerator _linkGenerator;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UnitsGenerator(LinkGenerator linkGenerator)
+        public UnitsGenerator(
+            LinkGenerator linkGenerator,
+            IHttpContextAccessor httpContextAccessor)
         {
             _linkGenerator = linkGenerator;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public Link GetGetUnitsLink(string relationship)
@@ -20,7 +24,8 @@ namespace YellowFoods.Api.Links.Generators
             return new Link
             {
                 Rel = relationship,
-                Href = _linkGenerator.GetPathByControllerAction(
+                Href = _linkGenerator.GetUriByNameofAction(
+                    _httpContextAccessor.HttpContext,
                     nameof(UnitsController.GetUnits),
                     nameof(UnitsController)),
                 Action = HttpMethods.Get
@@ -32,7 +37,8 @@ namespace YellowFoods.Api.Links.Generators
             return new Link
             {
                 Rel = relationship,
-                Href = _linkGenerator.GetPathByControllerAction(
+                Href = _linkGenerator.GetUriByNameofAction(
+                    _httpContextAccessor.HttpContext,
                     nameof(UnitsController.GetUnit),
                     nameof(UnitsController),
                     new { unitId }),

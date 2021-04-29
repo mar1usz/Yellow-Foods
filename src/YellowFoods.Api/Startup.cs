@@ -38,6 +38,8 @@ namespace YellowFoods.Api
 
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddHttpContextAccessor();
+
             services.AddScoped<IFoodsGenerator, FoodsGenerator>();
             services.AddScoped<INutrientsGenerator, NutrientsGenerator>();
             services.AddScoped<INutrientEntriesGenerator,

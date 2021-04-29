@@ -5,19 +5,34 @@ namespace YellowFoods.Api.Extensions
 {
     public static class LinkGeneratorExtensions
     {
-        public static string GetPathByControllerAction(
+        public static string GetUriByNameofAction(
             this LinkGenerator generator,
-            string action,
-            string controller,
+            HttpContext httpContext,
+            string action = null,
+            string controller = null,
             object values = null,
-            PathString pathBase = default,
+            string scheme = null,
+            HostString? host = null,
+            PathString? pathBase = null,
             FragmentString fragment = default,
             LinkOptions options = null)
         {
-            return generator.GetPathByAction(
+            string controllerSuffix = "Controller";
+
+            if (controller != null
+                && controller.EndsWith(controllerSuffix))
+            {
+                int index = controller.LastIndexOf(controllerSuffix);
+                controller = controller.Remove(index);
+            }
+
+            return generator.GetUriByAction(
+                httpContext,
                 action,
-                controller.Replace("Controller", string.Empty),
+                controller,
                 values,
+                scheme,
+                host,
                 pathBase,
                 fragment,
                 options);

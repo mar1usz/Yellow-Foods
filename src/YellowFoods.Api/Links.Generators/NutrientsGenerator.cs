@@ -9,10 +9,14 @@ namespace YellowFoods.Api.Links.Generators
     public class NutrientsGenerator : INutrientsGenerator
     {
         private readonly LinkGenerator _linkGenerator;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public NutrientsGenerator(LinkGenerator linkGenerator)
+        public NutrientsGenerator(
+            LinkGenerator linkGenerator,
+            IHttpContextAccessor httpContextAccessor)
         {
             _linkGenerator = linkGenerator;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public Link GetGetNutrientsLink(string relationship)
@@ -20,7 +24,8 @@ namespace YellowFoods.Api.Links.Generators
             return new Link
             {
                 Rel = relationship,
-                Href = _linkGenerator.GetPathByControllerAction(
+                Href = _linkGenerator.GetUriByNameofAction(
+                    _httpContextAccessor.HttpContext,
                     nameof(NutrientsController.GetNutrients),
                     nameof(NutrientsController)),
                 Action = HttpMethods.Get
@@ -32,7 +37,8 @@ namespace YellowFoods.Api.Links.Generators
             return new Link
             {
                 Rel = relationship,
-                Href = _linkGenerator.GetPathByControllerAction(
+                Href = _linkGenerator.GetUriByNameofAction(
+                    _httpContextAccessor.HttpContext,
                     nameof(NutrientsController.GetNutrient),
                     nameof(NutrientsController),
                     new { nutrientId }),
