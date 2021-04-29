@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace YellowFoods.Extensions
+namespace YellowFoods.Api.Extensions
 {
     public static class LinkGeneratorExtensions
     {

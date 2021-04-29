@@ -4,16 +4,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using YellowFoods.Api.Links.Generators;
+using YellowFoods.Api.Links.Generators.Abstractions;
+using YellowFoods.Api.Links.Services;
+using YellowFoods.Api.Links.Services.Abstractions;
+using YellowFoods.Api.Resources;
 using YellowFoods.Data;
 using YellowFoods.Data.Services;
 using YellowFoods.Data.Services.Abstractions;
-using YellowFoods.Links.Generators;
-using YellowFoods.Links.Generators.Abstractions;
-using YellowFoods.Links.Services;
-using YellowFoods.Links.Services.Abstractions;
-using YellowFoods.Resources;
 
-namespace YellowFoods
+namespace YellowFoods.Api
 {
     public class Startup
     {

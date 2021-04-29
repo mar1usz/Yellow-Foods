@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using YellowFoods.Data.Models;
 
-namespace YellowFoods.Resources.Profiles
+namespace YellowFoods.Api.Resources.Profiles
 {
     public class NutrientEntryProfile : Profile
     {

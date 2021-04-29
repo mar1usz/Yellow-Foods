@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YellowFoods.Api.Links.Services.Abstractions;
+using YellowFoods.Api.Resources;
 using YellowFoods.Data.Models;
 using YellowFoods.Data.Services.Abstractions;
-using YellowFoods.Links.Services.Abstractions;
-using YellowFoods.Resources;
 
-namespace YellowFoods.Controllers
+namespace YellowFoods.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,7 +16,7 @@ namespace YellowFoods.Controllers
     {
         private readonly IFoodsDataService _dataService;
         private readonly IMapper _mapper;
-        private readonly ILinkService<FoodResource> _linkService; 
+        private readonly ILinkService<FoodResource> _linkService;
 
         public FoodsController(
             IFoodsDataService dataService,
@@ -94,7 +94,7 @@ namespace YellowFoods.Controllers
 
             await _dataService.RemoveFood(food);
 
-             var resource = _mapper.Map<FoodResource>(food);
+            var resource = _mapper.Map<FoodResource>(food);
             _linkService.AddLinks(resource);
             return resource;
         }

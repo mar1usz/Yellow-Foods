@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using YellowFoods.Resources.Abstractions;
+using YellowFoods.Api.Resources.Abstractions;
 
-namespace YellowFoods.Links.Services.Abstractions
+namespace YellowFoods.Api.Links.Services.Abstractions
 {
     public interface ILinkService<TResource> where TResource : Resource
     {

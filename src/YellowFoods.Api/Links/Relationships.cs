@@ -1,4 +1,4 @@
-﻿namespace YellowFoods.Links
+﻿namespace YellowFoods.Api.Links
 {
     public static class Relationships
     {

@@ -1,8 +1,8 @@
-﻿using YellowFoods.Links.Generators.Abstractions;
-using YellowFoods.Links.Services.Abstractions;
-using YellowFoods.Resources;
+﻿using YellowFoods.Api.Links.Generators.Abstractions;
+using YellowFoods.Api.Links.Services.Abstractions;
+using YellowFoods.Api.Resources;
 
-namespace YellowFoods.Links.Services
+namespace YellowFoods.Api.Links.Services
 {
     public class NutrientLinkService : ILinkService<NutrientResource>
     {
