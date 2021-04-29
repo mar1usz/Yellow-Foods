@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using System;
 
 namespace YellowFoods.Api.Extensions
 {
@@ -9,27 +8,33 @@ namespace YellowFoods.Api.Extensions
         public static string GetUriByNameofAction(
             this LinkGenerator generator,
             HttpContext httpContext,
-            string action,
-            string controller,
-            object values = null)
+            string action = null,
+            string controller = null,
+            object values = null,
+            string scheme = null,
+            HostString? host = null,
+            PathString? pathBase = null,
+            FragmentString fragment = default,
+            LinkOptions options = null)
         {
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            string suffix = "Controller";
 
-            if (controller == null)
+            if (controller != null && controller.EndsWith(suffix))
             {
-                throw new ArgumentNullException(nameof(controller));
+                int index = controller.LastIndexOf(suffix);
+                controller = controller.Remove(index);
             }
-
-            controller = controller.RemoveSuffix("Controller");
 
             return generator.GetUriByAction(
                 httpContext,
                 action,
                 controller,
-                values);
+                values,
+                scheme,
+                host,
+                pathBase,
+                fragment,
+                options);
         }
     }
 }
