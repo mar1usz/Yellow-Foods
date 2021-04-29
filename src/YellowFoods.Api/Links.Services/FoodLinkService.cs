@@ -51,8 +51,8 @@ namespace YellowFoods.Api.Links.Services
         private void AddDeleteFoodLink(FoodResource resource)
         {
             resource.AddLink(_foodsGenerator.GetDeleteFoodLink(
-                    Relationships.Self,
-                    resource.Id));
+                Relationships.Self,
+                resource.Id));
         }
     }
 }
