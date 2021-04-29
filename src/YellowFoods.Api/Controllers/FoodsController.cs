@@ -74,8 +74,7 @@ namespace YellowFoods.Controllers
             var food = _mapper.Map<Food>(foodResource);
             await _dataService.AddFood(food);
 
-            var addedResource = _mapper.Map<FoodResource>(
-                food);
+            var addedResource = _mapper.Map<FoodResource>(food);
             _linkService.AddLinks(addedResource);
             return CreatedAtAction(
                 nameof(GetFood),
