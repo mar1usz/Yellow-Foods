@@ -7,10 +7,14 @@ namespace YellowFoods.Api.Links.Services
     public class FoodLinkService : ILinkService<FoodResource>
     {
         private readonly IFoodsGenerator _foodsGenerator;
+        private readonly INutrientEntriesGenerator _nutrientEntriesGenerator;
 
-        public FoodLinkService(IFoodsGenerator foodsGenerator)
+        public FoodLinkService(
+            IFoodsGenerator foodsGenerator,
+            INutrientEntriesGenerator nutrientEntriesGenerator) 
         {
             _foodsGenerator = foodsGenerator;
+            _nutrientEntriesGenerator = nutrientEntriesGenerator;
         }
 
         public void AddLinks(FoodResource resource)
@@ -20,6 +24,8 @@ namespace YellowFoods.Api.Links.Services
             AddPostFoodLink(resource);
             AddPutFoodLink(resource);
             AddDeleteFoodLink(resource);
+            AddGetNutrientEntriesLink(resource);
+            AddPostNutrientEntriesLink(resource);
         }
 
         private void AddGetFoodsLink(FoodResource resource)
@@ -51,6 +57,21 @@ namespace YellowFoods.Api.Links.Services
         private void AddDeleteFoodLink(FoodResource resource)
         {
             resource.AddLink(_foodsGenerator.GetDeleteFoodLink(
+                Relationships.NutrientEntry,
+                resource.Id));
+        }
+
+        private void AddGetNutrientEntriesLink(FoodResource resource)
+        {
+            resource.AddLink(
+                _nutrientEntriesGenerator.GetGetNutrientEntriesLink(
+                    Relationships.Self,
+                    resource.Id));
+        }
+
+        private void AddPostNutrientEntriesLink(FoodResource resource)
+        {
+            resource.AddLink(_nutrientEntriesGenerator.GetPostNutrientEntriesLink(
                 Relationships.Self,
                 resource.Id));
         }
