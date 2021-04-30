@@ -65,14 +65,14 @@ namespace YellowFoods.Api.Links.Services
         {
             resource.AddLink(
                 _nutrientEntriesGenerator.GetGetNutrientEntriesLink(
-                    Relationships.Self,
+                    Relationships.NutrientEntry,
                     resource.Id));
         }
 
         private void AddPostNutrientEntriesLink(FoodResource resource)
         {
             resource.AddLink(_nutrientEntriesGenerator.GetPostNutrientEntriesLink(
-                Relationships.Self,
+                Relationships.NutrientEntry,
                 resource.Id));
         }
     }
