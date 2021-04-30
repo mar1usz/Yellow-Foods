@@ -13,7 +13,9 @@ GET api/foods/1
     { "rel": "self", "href": "https://localhost:44339/api/foods/1", "action": "GET" },
     { "rel": "self", "href": "https://localhost:44339/api/foods", "action": "POST" },
     { "rel": "self", "href": "https://localhost:44339/api/foods/1", "action": "PUT" },
-    { "rel": "self", "href": "https://localhost:44339/api/foods/1", "action": "DELETE" }
+    { "rel": "self", "href": "https://localhost:44339/api/foods/1", "action": "DELETE" },
+    { "rel": "nutriententry", "href": "https://localhost:44339/api/foods/1/nutriententries", "action": "GET" },
+    { "rel": "nutriententry", "href": "https://localhost:44339/api/foods/1/nutriententries", "action": "POST" }
   ]
 }
 ```
