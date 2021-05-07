@@ -17,6 +17,7 @@ namespace YellowFoods.Api.Extensions
             FragmentString fragment = default,
             LinkOptions options = null)
         {
+            // Why this is not the regular behaviour lol?
             string suffix = "Controller";
 
             if (controller != null
