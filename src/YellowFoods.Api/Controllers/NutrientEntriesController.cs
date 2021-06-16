@@ -44,10 +44,12 @@ namespace YellowFoods.Api.Controllers
 
         [HttpGet("{foodId}/[controller]/{nutrientEntryId}")]
         public async Task<ActionResult<NutrientEntryResource>> GetNutrientEntry(
-            int foodId, int nutrientEntryId)
+            int foodId,
+            int nutrientEntryId)
         {
             var nutrientEntry = await _dataService.GetNutrientEntryAsync(
-                foodId, nutrientEntryId);
+                foodId,
+                nutrientEntryId);
             if (nutrientEntry == null)
             {
                 return NotFound();
@@ -100,7 +102,8 @@ namespace YellowFoods.Api.Controllers
             DeleteNutrientEntry(int foodId, int nutrientEntryId)
         {
             var nutrientEntry = await _dataService.GetNutrientEntryAsync(
-                foodId, nutrientEntryId);
+                foodId,
+                nutrientEntryId);
             if (nutrientEntry == null)
             {
                 return NotFound();
