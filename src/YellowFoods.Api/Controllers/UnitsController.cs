@@ -31,6 +31,7 @@ namespace YellowFoods.Api.Controllers
         public async Task<ActionResult<IEnumerable<UnitResource>>> GetUnits()
         {
             var units = await _dataService.GetUnitsAsync();
+
             var resources = _mapper.Map<IEnumerable<UnitResource>>(units);
             _linkService.AddLinks(resources);
             return resources.ToList();

@@ -32,6 +32,7 @@ namespace YellowFoods.Api.Controllers
             GetNutrients()
         {
             var nutrients = await _dataService.GetNutrientsAsync();
+
             var resources = _mapper.Map<IEnumerable<NutrientResource>>(
                 nutrients);
             _linkService.AddLinks(resources);

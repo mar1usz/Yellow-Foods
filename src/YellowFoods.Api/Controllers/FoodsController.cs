@@ -32,6 +32,7 @@ namespace YellowFoods.Api.Controllers
         public async Task<ActionResult<IEnumerable<FoodResource>>> GetFoods()
         {
             var foods = await _dataService.GetFoodsAsync();
+
             var resources = _mapper.Map<IEnumerable<FoodResource>>(foods);
             _linkService.AddLinks(resources);
             return resources.ToList();
@@ -74,12 +75,11 @@ namespace YellowFoods.Api.Controllers
             var food = _mapper.Map<Food>(resource);
             await _dataService.AddFood(food);
 
-            var addedResource = _mapper.Map<FoodResource>(food);
-            _linkService.AddLinks(addedResource);
+            _linkService.AddLinks(resource);
             return CreatedAtAction(
                 nameof(GetFood),
                 new { foodId = food.Id },
-                addedResource);
+                resource);
         }
 
         [HttpDelete("{foodId}")]
