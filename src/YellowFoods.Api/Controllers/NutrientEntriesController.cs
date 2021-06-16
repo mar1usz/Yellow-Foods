@@ -90,11 +90,12 @@ namespace YellowFoods.Api.Controllers
             var nutrientEntry = _mapper.Map<NutrientEntry>(resource);
             await _dataService.AddNutrientEntry(nutrientEntry);
 
-            _linkService.AddLinks(resource);
+            var addedResource = _mapper.Map<NutrientEntryResource>(resource);
+            _linkService.AddLinks(addedResource);
             return CreatedAtAction(
                 nameof(GetNutrientEntry),
                 new { foodId, nutrientEntryId = resource.Id },
-                resource);
+                addedResource);
         }
 
         [HttpDelete("{foodId}/[controller]/{nutrientEntryId}")]
