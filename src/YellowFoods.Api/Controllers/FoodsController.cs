@@ -54,8 +54,7 @@ namespace YellowFoods.Api.Controllers
 
         [HttpPut("{foodId}")]
         public async Task<IActionResult> PutFood(
-            int foodId,
-            FoodResource resource)
+            int foodId, FoodResource resource)
         {
             if (foodId != resource.Id)
             {
