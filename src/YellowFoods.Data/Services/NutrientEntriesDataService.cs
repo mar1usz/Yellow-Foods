@@ -48,9 +48,7 @@ namespace YellowFoods.Data.Services
             await _context.SaveChangesAsync();
         }
 
-        private IQueryable<NutrientEntry> NutrientEntriesAsQueryable(int foodId)
-        {
-            return _context.NutrientEntries.Where(ne => ne.FoodId == foodId);
-        }
+        private IQueryable<NutrientEntry> NutrientEntriesAsQueryable(int foodId) =>
+            _context.NutrientEntries.Where(ne => ne.FoodId == foodId);
     }
 }
