@@ -22,8 +22,7 @@ namespace YellowFoods.Data.Services
 
         public async Task<Food> GetFoodAsync(int foodId)
         {
-            return await _context.Foods
-                .FirstOrDefaultAsync(f => f.Id == foodId);
+            return await _context.Foods.FindAsync(foodId);
         }
 
         public async Task AddFood(Food food)

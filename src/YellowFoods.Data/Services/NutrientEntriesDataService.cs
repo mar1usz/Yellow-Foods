@@ -19,15 +19,14 @@ namespace YellowFoods.Data.Services
         public async Task<IEnumerable<NutrientEntry>> GetNutrientEntriesAsync(
             int foodId)
         {
-            return await GetNutrientEntriesAsQueryable(foodId)
-                .ToListAsync();
+            return await NutrientEntriesAsQueryable(foodId).ToListAsync();
         }
 
         public async Task<NutrientEntry> GetNutrientEntryAsync(
             int foodId,
             int nutrientEntryId)
         {
-            return await GetNutrientEntriesAsQueryable(foodId)
+            return await NutrientEntriesAsQueryable(foodId)
                 .FirstOrDefaultAsync(ne => ne.Id == nutrientEntryId);
         }
 
@@ -49,8 +48,7 @@ namespace YellowFoods.Data.Services
             await _context.SaveChangesAsync();
         }
 
-        private IQueryable<NutrientEntry> GetNutrientEntriesAsQueryable(
-            int foodId)
+        private IQueryable<NutrientEntry> NutrientEntriesAsQueryable(int foodId)
         {
             return _context.NutrientEntries.Where(ne => ne.FoodId == foodId);
         }
