@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YellowFoods.Api", "YellowFoods.Api\YellowFoods.Api.csproj", "{AA9AD5A5-3628-4CAE-8D65-7519089BB145}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YellowFoods", "YellowFoods.Api\YellowFoods.csproj", "{AA9AD5A5-3628-4CAE-8D65-7519089BB145}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YellowFoods.Data", "YellowFoods.Data\YellowFoods.Data.csproj", "{209AD91B-B36C-4266-864D-795F9730ECC6}"
 EndProject
