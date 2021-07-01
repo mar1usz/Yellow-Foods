@@ -1,4 +1,4 @@
-﻿namespace YellowFoods.Api.Links.Generators.Abstractions
+﻿namespace YellowFoods.Links.Generators.Abstractions
 {
     public interface INutrientEntriesGenerator
     {

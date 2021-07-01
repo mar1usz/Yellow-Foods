@@ -1,8 +1,8 @@
-﻿using YellowFoods.Api.Links.Generators.Abstractions;
-using YellowFoods.Api.Links.Services.Abstractions;
-using YellowFoods.Api.Resources;
+﻿using YellowFoods.Links.Generators.Abstractions;
+using YellowFoods.Links.Services.Abstractions;
+using YellowFoods.Resources;
 
-namespace YellowFoods.Api.Links.Services
+namespace YellowFoods.Links.Services
 {
     public class UnitLinkService : ILinkService<UnitResource>
     {

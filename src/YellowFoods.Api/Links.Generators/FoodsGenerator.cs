@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using YellowFoods.Api.Controllers;
-using YellowFoods.Api.Extensions;
-using YellowFoods.Api.Links.Generators.Abstractions;
+using YellowFoods.Controllers;
+using YellowFoods.Extensions;
+using YellowFoods.Links.Generators.Abstractions;
 
-namespace YellowFoods.Api.Links.Generators
+namespace YellowFoods.Links.Generators
 {
     public class FoodsGenerator : IFoodsGenerator
     {

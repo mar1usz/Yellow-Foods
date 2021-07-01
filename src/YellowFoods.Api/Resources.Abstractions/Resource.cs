@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using YellowFoods.Api.Links;
+using YellowFoods.Links;
 
-namespace YellowFoods.Api.Resources.Abstractions
+namespace YellowFoods.Resources.Abstractions
 {
     public abstract class Resource
     {

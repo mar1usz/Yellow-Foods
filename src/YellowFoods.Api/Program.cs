@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace YellowFoods.Api
+namespace YellowFoods
 {
     public class Program
     {

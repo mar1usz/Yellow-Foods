@@ -1,6 +1,6 @@
-﻿using YellowFoods.Api.Resources.Abstractions;
+﻿using YellowFoods.Resources.Abstractions;
 
-namespace YellowFoods.Api.Resources
+namespace YellowFoods.Resources
 {
     public class FoodResource : Resource
     {

@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using YellowFoods.Api.Links.Services.Abstractions;
-using YellowFoods.Api.Resources;
+using YellowFoods.Links.Services.Abstractions;
+using YellowFoods.Resources;
 using YellowFoods.Data.Models;
 using YellowFoods.Data.Services.Abstractions;
 
-namespace YellowFoods.Api.Controllers
+namespace YellowFoods.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
