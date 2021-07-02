@@ -5,6 +5,8 @@ namespace YellowFoods.Extensions
 {
     public static class LinkGeneratorExtensions
     {
+        private const string _controllerSuffix = "Controller";
+
         public static string GetUriByNameofAction(
             this LinkGenerator generator,
             HttpContext httpContext,
@@ -17,12 +19,10 @@ namespace YellowFoods.Extensions
             FragmentString fragment = default,
             LinkOptions options = null)
         {
-            string suffix = "Controller";
-
             if (controller != null
-                && controller.EndsWith(suffix))
+                && controller.EndsWith(_controllerSuffix))
             {
-                int index = controller.LastIndexOf(suffix);
+                int index = controller.LastIndexOf(_controllerSuffix);
                 controller = controller.Remove(index);
             }
 
