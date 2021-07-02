@@ -33,11 +33,11 @@ namespace YellowFoods.Controllers
         public async Task<ActionResult<IEnumerable<NutrientEntryResource>>>
             GetNutrientEntries(int foodId)
         {
-            var nutrientEntries = await _dataService.GetNutrientEntriesAsync(
-                foodId);
+            var nutrientEntries = await _dataService
+                .GetNutrientEntriesAsync(foodId);
 
-            var resources = _mapper.Map<IEnumerable<NutrientEntryResource>>(
-                nutrientEntries);
+            var resources = _mapper
+                .Map<IEnumerable<NutrientEntryResource>>(nutrientEntries);
             _linkService.AddLinks(resources);
             return resources.ToList();
         }
@@ -47,9 +47,8 @@ namespace YellowFoods.Controllers
             int foodId,
             int nutrientEntryId)
         {
-            var nutrientEntry = await _dataService.GetNutrientEntryAsync(
-                foodId,
-                nutrientEntryId);
+            var nutrientEntry = await _dataService
+                .GetNutrientEntryAsync(foodId, nutrientEntryId);
             if (nutrientEntry == null)
             {
                 return NotFound();
@@ -102,9 +101,8 @@ namespace YellowFoods.Controllers
         public async Task<ActionResult<NutrientEntryResource>>
             DeleteNutrientEntry(int foodId, int nutrientEntryId)
         {
-            var nutrientEntry = await _dataService.GetNutrientEntryAsync(
-                foodId,
-                nutrientEntryId);
+            var nutrientEntry = await _dataService
+                .GetNutrientEntryAsync(foodId, nutrientEntryId);
             if (nutrientEntry == null)
             {
                 return NotFound();

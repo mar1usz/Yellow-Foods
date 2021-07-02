@@ -33,8 +33,8 @@ namespace YellowFoods.Controllers
         {
             var nutrients = await _dataService.GetNutrientsAsync();
 
-            var resources = _mapper.Map<IEnumerable<NutrientResource>>(
-                nutrients);
+            var resources = _mapper
+                .Map<IEnumerable<NutrientResource>>(nutrients);
             _linkService.AddLinks(resources);
             return resources.ToList();
         }
