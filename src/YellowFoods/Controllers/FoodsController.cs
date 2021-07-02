@@ -75,12 +75,12 @@ namespace YellowFoods.Controllers
             var food = _mapper.Map<Food>(resource);
             await _dataService.AddFood(food);
 
-            var addedResource = _mapper.Map<FoodResource>(food);
-            _linkService.AddLinks(addedResource);
+            resource.Id = food.Id;
+            _linkService.AddLinks(resource);
             return CreatedAtAction(
                 nameof(GetFood),
-                new { foodId = food.Id },
-                addedResource);
+                new { foodId = resource.Id },
+                resource);
         }
 
         [HttpDelete("{foodId}")]
