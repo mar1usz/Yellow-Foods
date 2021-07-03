@@ -2,10 +2,10 @@
 {
     public static class Relationships
     {
-        public static readonly string Self = "self";
-        public static readonly string Food = "food";
-        public static readonly string Nutrient = "nutrient";
-        public static readonly string NutrientEntry = "nutriententry";
-        public static readonly string Unit = "unit";
+        public const string Self = "self";
+        public const string Food = "food";
+        public const string Nutrient = "nutrient";
+        public const string NutrientEntry = "nutriententry";
+        public const string Unit = "unit";
     }
 }
