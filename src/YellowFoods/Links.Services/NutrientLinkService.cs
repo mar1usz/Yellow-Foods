@@ -1,10 +1,11 @@
-﻿using YellowFoods.Links.Generators.Abstractions;
+﻿using System.Collections.Generic;
+using YellowFoods.Links.Generators.Abstractions;
 using YellowFoods.Links.Services.Abstractions;
 using YellowFoods.Resources;
 
 namespace YellowFoods.Links.Services
 {
-    public class NutrientLinkService : ILinkService<NutrientResource>
+    public class NutrientLinkService : INutrientLinkService
     {
         private readonly INutrientsGenerator _nutrientsGenerator;
 
@@ -17,6 +18,14 @@ namespace YellowFoods.Links.Services
         {
             AddGetNutrientsLink(resource);
             AddGetNutrientLink(resource);
+        }
+
+        public void AddLinks(IEnumerable<NutrientResource> resources)
+        {
+            foreach (var resource in resources)
+            {
+                AddLinks(resource);
+            }
         }
 
         private void AddGetNutrientsLink(NutrientResource resource)

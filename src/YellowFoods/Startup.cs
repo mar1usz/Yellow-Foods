@@ -46,12 +46,11 @@ namespace YellowFoods
                 NutrientEntriesGenerator>();
             services.AddScoped<IUnitsGenerator, UnitsGenerator>();
 
-            services.AddScoped<ILinkService<FoodResource>, FoodLinkService>();
-            services.AddScoped<ILinkService<NutrientResource>,
-                NutrientLinkService>();
-            services.AddScoped<ILinkService<NutrientEntryResource>,
+            services.AddScoped<IFoodLinkService, FoodLinkService>();
+            services.AddScoped<INutrientLinkService, NutrientLinkService>();
+            services.AddScoped<INutrientEntryLinkService,
                 NutrientEntryLinkService>();
-            services.AddScoped<ILinkService<UnitResource>, UnitLinkService>();
+            services.AddScoped<IUnitLinkService, UnitLinkService>();
 
             services.AddRouting(options =>
             {

@@ -17,12 +17,12 @@ namespace YellowFoods.Controllers
     {
         private readonly INutrientEntriesDataService _dataService;
         private readonly IMapper _mapper;
-        private readonly ILinkService<NutrientEntryResource> _linkService;
+        private readonly INutrientEntryLinkService _linkService;
 
         public NutrientEntriesController(
             INutrientEntriesDataService dataService,
             IMapper mapper,
-            ILinkService<NutrientEntryResource> linkService)
+            INutrientEntryLinkService linkService)
         {
             _dataService = dataService;
             _mapper = mapper;
