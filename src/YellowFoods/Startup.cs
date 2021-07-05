@@ -26,9 +26,8 @@ namespace YellowFoods
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<YellowFoodsContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString(
-                        "YellowFoodsContext")));
+            services.AddDbContext<YellowFoodsContext>(o => o.UseSqlServer(
+                Configuration.GetConnectionString("YellowFoodsContext")));
 
             services.AddScoped<IFoodsDataService, FoodsDataService>();
             services.AddScoped<INutrientsDataService, NutrientsDataService>();
@@ -52,10 +51,10 @@ namespace YellowFoods
                 NutrientEntriesLinkService>();
             services.AddScoped<IUnitsLinkService, UnitsLinkService>();
 
-            services.AddRouting(options =>
+            services.AddRouting(o =>
             {
-                options.LowercaseUrls = true;
-                options.LowercaseQueryStrings = true;
+                o.LowercaseUrls = true;
+                o.LowercaseQueryStrings = true;
             });
 
             services.AddControllers();
@@ -74,9 +73,9 @@ namespace YellowFoods
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(e =>
             {
-                endpoints.MapControllers();
+                e.MapControllers();
             });
         }
     }

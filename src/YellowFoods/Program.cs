@@ -12,9 +12,9 @@ namespace YellowFoods
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+                .ConfigureWebHostDefaults(b =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    b.UseStartup<Startup>();
                 });
     }
 }
