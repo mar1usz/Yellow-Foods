@@ -14,18 +14,18 @@ namespace YellowFoods.Links.Services
             _unitsGenerator = unitsGenerator;
         }
 
-        public void AddLinks(UnitResource resource)
-        {
-            AddGetUnitsLink(resource);
-            AddGetUnitLink(resource);
-        }
-
         public void AddLinks(IEnumerable<UnitResource> resources)
         {
             foreach (var resource in resources)
             {
                 AddLinks(resource);
             }
+        }
+
+        public void AddLinks(UnitResource resource)
+        {
+            AddGetUnitsLink(resource);
+            AddGetUnitLink(resource);
         }
 
         private void AddGetUnitsLink(UnitResource resource)

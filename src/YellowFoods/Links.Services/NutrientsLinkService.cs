@@ -14,18 +14,18 @@ namespace YellowFoods.Links.Services
             _nutrientsGenerator = nutrientsGenerator;
         }
 
-        public void AddLinks(NutrientResource resource)
-        {
-            AddGetNutrientsLink(resource);
-            AddGetNutrientLink(resource);
-        }
-
         public void AddLinks(IEnumerable<NutrientResource> resources)
         {
             foreach (var resource in resources)
             {
                 AddLinks(resource);
             }
+        }
+
+        public void AddLinks(NutrientResource resource)
+        {
+            AddGetNutrientsLink(resource);
+            AddGetNutrientLink(resource);
         }
 
         private void AddGetNutrientsLink(NutrientResource resource)

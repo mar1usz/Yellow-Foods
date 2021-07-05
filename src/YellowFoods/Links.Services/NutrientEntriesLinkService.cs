@@ -24,6 +24,14 @@ namespace YellowFoods.Links.Services
             _unitsGenerator = unitsGenerator;
         }
 
+        public void AddLinks(IEnumerable<NutrientEntryResource> resources)
+        {
+            foreach (var resource in resources)
+            {
+                AddLinks(resource);
+            }
+        }
+
         public void AddLinks(NutrientEntryResource resource)
         {
             AddGetNutrientEntriesLink(resource);
@@ -40,14 +48,6 @@ namespace YellowFoods.Links.Services
             AddGetNutrientLink(resource);
             AddGetUnitsLink(resource);
             AddGetUnitLink(resource);
-        }
-
-        public void AddLinks(IEnumerable<NutrientEntryResource> resources)
-        {
-            foreach (var resource in resources)
-            {
-                AddLinks(resource);
-            }
         }
 
         private void AddGetNutrientEntriesLink(NutrientEntryResource resource)

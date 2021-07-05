@@ -18,6 +18,14 @@ namespace YellowFoods.Links.Services
             _nutrientEntriesGenerator = nutrientEntriesGenerator;
         }
 
+        public void AddLinks(IEnumerable<FoodResource> resources)
+        {
+            foreach (var resource in resources)
+            {
+                AddLinks(resource);
+            }
+        }
+
         public void AddLinks(FoodResource resource)
         {
             AddGetFoodsLink(resource);
@@ -27,14 +35,6 @@ namespace YellowFoods.Links.Services
             AddDeleteFoodLink(resource);
             AddGetNutrientEntriesLink(resource);
             AddPostNutrientEntriesLink(resource);
-        }
-
-        public void AddLinks(IEnumerable<FoodResource> resources)
-        {
-            foreach (var resource in resources)
-            {
-                AddLinks(resource);
-            }
         }
 
         private void AddGetFoodsLink(FoodResource resource)
