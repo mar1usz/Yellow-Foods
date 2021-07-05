@@ -5,14 +5,14 @@ using YellowFoods.Resources;
 
 namespace YellowFoods.Links.Services
 {
-    public class NutrientEntryLinkService : INutrientEntryLinkService
+    public class NutrientEntriesLinkService : INutrientEntriesLinkService
     {
         private readonly INutrientEntriesGenerator _nutrientEntriesGenerator;
         private readonly IFoodsGenerator _foodsGenerator;
         private readonly INutrientsGenerator _nutrientsGenerator;
         private readonly IUnitsGenerator _unitsGenerator;
 
-        public NutrientEntryLinkService(
+        public NutrientEntriesLinkService(
             INutrientEntriesGenerator nutrientEntriesGenerator,
             IFoodsGenerator foodsGenerator,
             INutrientsGenerator nutrientsGenerator,

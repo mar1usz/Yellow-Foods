@@ -5,11 +5,11 @@ using YellowFoods.Resources;
 
 namespace YellowFoods.Links.Services
 {
-    public class UnitLinkService : IUnitLinkService
+    public class UnitsLinkService : IUnitsLinkService
     {
         private readonly IUnitsGenerator _unitsGenerator;
 
-        public UnitLinkService(IUnitsGenerator unitsGenerator)
+        public UnitsLinkService(IUnitsGenerator unitsGenerator)
         {
             _unitsGenerator = unitsGenerator;
         }

@@ -15,12 +15,12 @@ namespace YellowFoods.Controllers
     {
         private readonly IUnitsDataService _dataService;
         private readonly IMapper _mapper;
-        private readonly IUnitLinkService _linkService;
+        private readonly IUnitsLinkService _linkService;
 
         public UnitsController(
             IUnitsDataService dataService,
             IMapper mapper,
-            IUnitLinkService linkService)
+            IUnitsLinkService linkService)
         {
             _dataService = dataService;
             _mapper = mapper;
