@@ -23,7 +23,7 @@ namespace YellowFoods.Data.Services
         public async Task<Unit> GetUnitAsync(int unitId)
         {
             return await _context.Units
-                .FirstOrDefaultAsync(ne => ne.Id == unitId);
+                .FirstOrDefaultAsync(u => u.Id == unitId);
         }
     }
 }

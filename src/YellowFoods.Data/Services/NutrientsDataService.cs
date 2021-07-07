@@ -23,7 +23,7 @@ namespace YellowFoods.Data.Services
         public async Task<Nutrient> GetNutrientAsync(int nutrientId)
         {
             return await _context.Nutrients
-                .FirstOrDefaultAsync(ne => ne.Id == nutrientId);
+                .FirstOrDefaultAsync(n => n.Id == nutrientId);
         }
     }
 }
