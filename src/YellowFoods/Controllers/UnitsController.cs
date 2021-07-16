@@ -41,6 +41,7 @@ namespace YellowFoods.Controllers
         public async Task<ActionResult<UnitResource>> GetUnit(int unitId)
         {
             var unit = await _dataService.GetUnitAsync(unitId);
+
             if (unit == null)
             {
                 return NotFound();

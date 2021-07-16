@@ -42,6 +42,7 @@ namespace YellowFoods.Controllers
         public async Task<ActionResult<FoodResource>> GetFood(int foodId)
         {
             var food = await _dataService.GetFoodAsync(foodId);
+
             if (food == null)
             {
                 return NotFound();
@@ -87,6 +88,7 @@ namespace YellowFoods.Controllers
         public async Task<ActionResult<FoodResource>> DeleteFood(int foodId)
         {
             var food = await _dataService.GetFoodAsync(foodId);
+
             if (food == null)
             {
                 return NotFound();

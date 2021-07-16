@@ -44,6 +44,7 @@ namespace YellowFoods.Controllers
             int nutrientId)
         {
             var nutrient = await _dataService.GetNutrientAsync(nutrientId);
+
             if (nutrient == null)
             {
                 return NotFound();

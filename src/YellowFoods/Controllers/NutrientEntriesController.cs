@@ -49,6 +49,7 @@ namespace YellowFoods.Controllers
         {
             var nutrientEntry = await _dataService
                 .GetNutrientEntryAsync(foodId, nutrientEntryId);
+
             if (nutrientEntry == null)
             {
                 return NotFound();
@@ -103,6 +104,7 @@ namespace YellowFoods.Controllers
         {
             var nutrientEntry = await _dataService
                 .GetNutrientEntryAsync(foodId, nutrientEntryId);
+
             if (nutrientEntry == null)
             {
                 return NotFound();
